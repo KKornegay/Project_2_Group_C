@@ -24,7 +24,7 @@ We are examining MLB team salary data from 1985-2015 to determine whether the hi
    1. [Kaggle:Baseball Databank](https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv)
       
       Baseball Databank is a compilation of historical baseball data in aconvenient, tidy format, distributed under Open Data terms.
-      This version of the Baseball databank was downloaded from Sean Lahman's website. Data sets employed were:
+      This version of the Baseball databank was downloaded from [Sean Lahman's website](http://www.seanlahman.com/baseball-archive/statistics/). Data sets employed were:
       +  [Teams.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Teams.csv) (537 KB, Total columns available: 48)
       +  [Saleries.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Salaries.csv) (756 KB, Total columns available: 5)
       
