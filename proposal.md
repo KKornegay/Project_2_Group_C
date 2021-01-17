@@ -20,16 +20,19 @@ We are examining MLB team salary data from 1985-2015 to determine whether the hi
 -	Python
 
 ### Data Sources:
-	https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv *
-[Kaggle:Baseball Databank](https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv)
 	
-	*additional sources TBD
-![csvArt.png](images/csvArt.png)
+   1. [Kaggle:Baseball Databank](https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv)
+	Baseball Databank is a compilation of historical baseball data in aconvenient, tidy format, distributed under Open Data terms.
+        This version of the Baseball databank was downloaded from Sean Lahman's website.
+	https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv *
+	
+
 ### Charts: 
 -	Scatterplot showing average team cost per win/per season
 -	Bubble chart representing all 30 champions (from 1985-2015). 
 -	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
-
+	![csvArt.png](images/csvArt.png)
+	
 ### Questions to be answered:
 1.	What was the average cost per team win based on total salaries each season?
 2.	How often did yearly champions spend above or below the league mean per win?
