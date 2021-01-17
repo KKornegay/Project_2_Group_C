@@ -1,8 +1,7 @@
-![coverArt1.png](images/coverArt1.png)
 
-
-# <div align = "center"> Project 2, Group C – “Moneyball?”</div>
 # <div align = "center">Moneyball? </div>
+![coverArt1.png](images/coverArt1.png)
+# <div align = "center"> Project 2, Group C – “Moneyball?”</div>
 
 ## Do higher MLB player salaries lead to greater team success?
 
