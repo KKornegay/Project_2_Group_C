@@ -30,11 +30,10 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
       This version of the Baseball databank was downloaded from [Sean Lahman's website](http://www.seanlahman.com/baseball-archive/statistics/). Data sets employed were:
       +  [Teams.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Teams.csv) (537 KB, Total columns available: 48)
       +  [Saleries.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Salaries.csv) (756 KB, Total columns available: 5)
-      
-      
-      		
+        		
 	
 ![csvArt.png](images/csvArt.png)
+	
 	
 	
    2. *Additional sources TBD	
