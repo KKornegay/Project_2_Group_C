@@ -30,7 +30,7 @@ We are examining MLB team salary data from 1985-2015 to determine whether the hi
 ![csvArt.png](images/csvArt.png)
 	
 	
-   2. *additional sources TBD	
+   2. *Additional sources TBD	
 
 
 ### Charts: 
