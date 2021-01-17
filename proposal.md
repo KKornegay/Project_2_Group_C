@@ -6,13 +6,13 @@
 ## <b><div align = "center">Do higher MLB player salaries lead to greater team success?</div></b>
 
 An analysis of MLB team salary data from 1985-2015 was investigated to determine if the highest spending teams achieve the greatest levels of success. Relationships considered will include:
--	Cost/Win for each team per season -> total team salary/wins
+-	Cost/Win for each team per season -> total team salary/wins.
 -	Mean league Cost/Win per season -> total league salaries/total league wins
 -	Cost/Win for each year’s championship team vs. League median cost per win.
 
 ### Process: 
-- [x] Concept design and project planning
-- [x] Create Github Repository
+- [x] Concept design and project planning.
+- [x] Create Github Repository.
 - [x] Evaluate and obtain data sources.
 - [ ] Create SQL database to archive data.
 - [ ] Develop a Python Flask application to create API's enabling users to explore data. 
@@ -47,7 +47,7 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
 
 
 ### Charts: 
--	Scatterplot showing average team cost per win/per season
+-	Scatterplot showing average team cost per win/per season.
 -	Bubble chart representing all 30 champions (from 1985-2015). 
 -	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
 
