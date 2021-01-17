@@ -11,12 +11,12 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
 -	Cost/Win for each year’s championship team vs. League median cost per win.
 
 ### Process: 
-1.	- [x] Create Github Repository
-2.	Evaluate and obtain data sources.
-3.	Create SQL database to archive data.
-4.	Develop a Python Flask application that will generate API's enabling users to explore data. 
-5.	Generate a website with instructions for users to access API's and website content.
-6.	Design additional web pages containing analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
+1.		- [x] Create Github Repository
+2.		- [x] Evaluate and obtain data sources.
+3.		- [x] Create SQL database to archive data.
+4.		- [x] Develop a Python Flask application that will generate API's enabling users to explore data. 
+5.		- [x] Generate a website with instructions for users to access API's and website content.
+6.		- [x] Design additional web pages containing analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
 
 ### Resources:
 -	HTML/CSS
