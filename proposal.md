@@ -21,6 +21,7 @@ We are examining MLB team salary data from 1985-2015 to determine whether the hi
 
 ### Data Sources:
 	https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv *
+	[Kaggle:Baseball databank](www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv)
 	*additional sources TBD
 ![csvArt.png](images/csvArt.png)
 ### Charts: 
