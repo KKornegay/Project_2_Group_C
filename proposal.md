@@ -12,7 +12,7 @@ An analysis of MLB team salary data from 1985-2015 to determine whether the high
 
 ### Process: 
 1.	Create SQL database to archive data.
-2.	Create a Python Flask that generate API's allowing users to explore datasets. 
+2.	Create a Python Flask application that will generate API's enabling users to explore datasets. 
 3.	Generate a website with instructions for users to access API's and website content.
 4.	Create additional web pages with analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
 
