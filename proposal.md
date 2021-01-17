@@ -11,7 +11,7 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
 -	Cost/Win for each year’s championship team vs. League median cost per win.
 
 ### Process: 
-- [x] Hypothesis generation
+- [x] Concept design and project planning
 - [x] Create Github Repository
 - [x] Evaluate and obtain data sources.
 - [ ] Create SQL database to archive data.
