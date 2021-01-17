@@ -1,7 +1,7 @@
 ![coverArt1.png](images/coverArt1.png)
 
 # Project 2, Group C – “Moneyball?”
-# “Moneyball?”
+# Moneyball?
 
 ## Do higher MLB player salaries lead to greater team success?
 
