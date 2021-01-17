@@ -15,7 +15,7 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
 2.	Create SQL database to archive data.
 3.	Develop a Python Flask application that will generate API's enabling users to explore data. 
 4.	Generate a website with instructions for users to access API's and website content.
-5.	Design additional web pages containing analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
+5.	Design additional web pages composed of analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
 
 ### Resources:
 -	HTML/CSS
