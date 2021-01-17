@@ -22,7 +22,7 @@ We are examining MLB team salary data from 1985-2015 to determine whether the hi
 ### Data Sources:
 	https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv *
 	*additional sources TBD
-
+![csvArt.png](images/csvArt.png)
 ### Charts: 
 -	Scatterplot showing average team cost per win/per season
 -	Bubble chart representing all 30 champions (from 1985-2015). 
