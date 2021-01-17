@@ -13,10 +13,10 @@ An analysis of MLB team salary data from 1985-2015 was investigated to determine
 ### Process: 
 - [x] Create Github Repository
 - [x] Evaluate and obtain data sources.
-- [x] Create SQL database to archive data.
-- [x] Develop a Python Flask application that will generate API's enabling users to explore data. 
-- [x] Generate a website with instructions for users to access API's and website content.
-- [x] Design additional web pages containing analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
+- [ ] Create SQL database to archive data.
+- [ ] Develop a Python Flask application that will generate API's enabling users to explore data. 
+- [ ] Generate a website with instructions for users to access API's and website content.
+- [ ] Design additional web pages containing analysis, charts, and interactive experiences allowing users to investigate correlations between team salaries and outcomes.
 
 ### Resources:
 -	HTML/CSS
