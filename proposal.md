@@ -3,7 +3,7 @@
 ![coverArt1.png](images/coverArt1.png)
 
 
-## <u><div align = "center">Do higher MLB player salaries lead to greater team success?</div></u>
+## <b><div align = "center">Do higher MLB player salaries lead to greater team success?</div></b>
 
 An analysis of MLB team salary data from 1985-2015 was investigated to determine if the highest spending teams achieve the greatest levels of success. Relationships considered will include:
 -	Cost/Win for each team per season -> total team salary/wins
