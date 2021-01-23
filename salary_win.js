@@ -38,12 +38,12 @@ svg.append("text")
   .attr("text-anchor", "middle")
   .attr("x", width / 2)
   .attr("y", height + 40)
-  .text("Obesity (%)");
+  .text("Total Team Salary");
 
 // y axis
 
 var y = d3.scaleLinear()
-  .domain(d3.extent(data, d => d.smokes))
+  .domain(d3.extent(data, d => d.wins))
   .range([0,height]);
 svg.append("g")
   .call(d3.axisLeft(y));
@@ -55,7 +55,7 @@ svg.append("text")
   .attr("transform", "rotate(-90)")
   .attr("x", (height / 2) * -1)
   .attr("dy", (-40))
-  .text("Smokes (%)");
+  .text("Regular Season Wins");
 
 // create dots variables
 
@@ -66,16 +66,16 @@ var gdots = svg.selectAll("g.dot")
 
 // add dots to gdots
 gdots.append("circle")
-.attr("cx", d => x(d.obesity))
-.attr("cy", d => y(d.smokes))
+.attr("cx", d => x(d.team_salary))
+.attr("cy", d => y(d.wins))
 .attr("r", 8)
 .style("fill", "#b0e0e6");
 
 // add text to gdots
 gdots.append("text")
   .text(d => d.abbr)
-  .attr("x", d => x(d.obesity))
-  .attr("y", d => y(d.smokes))
+  .attr("x", d => x(d.team_salary))
+  .attr("y", d => y(d.wins))
   .attr("dx", -5)
   .attr("dy", 2)
   .style("font-size", "7px")
