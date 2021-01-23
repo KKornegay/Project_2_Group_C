@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 60, left: 60},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 1000 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#scatter")
@@ -73,7 +73,7 @@ gdots.append("circle")
 
 // add text to gdots
 gdots.append("text")
-  .text(d => d.abbr)
+  .text(d => d.team)
   .attr("x", d => x(d.team_salary))
   .attr("y", d => y(d.wins))
   .attr("dx", -5)
