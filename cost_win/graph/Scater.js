@@ -123,11 +123,10 @@ function makeResponsive() {
           .attr("fill", "none")
           .attr("stroke", "red");      
         // append circles
+        
         var circlesGroup = chartGroup.selectAll("circle")
           .data(winData)
-          .enter()
-
-          
+          .enter()   
           .append("circle")
           .attr("cx", d => xLinearScale(d.wins))
           .attr("cy", d => yLinearScale(d.cost_per_win/2))
