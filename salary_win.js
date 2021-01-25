@@ -1,3 +1,6 @@
+d3.json("year.json").then(function(data2) {
+  console.log(data2)
+});
 // set the dimensions and margins of the graph
 var margin = {top: 100, right: 60, bottom: 50, left: 60},
     width = 1500 - margin.left - margin.right,
@@ -20,6 +23,7 @@ d3.csv("Resources/mlb_data.csv").then(function(data) {
   data.forEach(d => {
     d.team_salary = +d.team_salary;
     d.wins = +d.wins;
+    // console.log(data)
   });
 
 // create x axis 
@@ -80,6 +84,35 @@ gdots.append("text")
   .attr("dy", 2)
   .style("font-size", "7px")
   .style(font-weight, "bold");
+
+  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+// create varible for dropdown
+// d3.json("single_year.json").then(function(data2) {
+//   console.log(data2)
+// });
+
+// var year = data.map(data => data.year);
+// function makeUnique(value, index, self) {
+  //return(self.indexOf(calue) === index;
+// }
+
+// var uniqueYears = years.filter(makeUnique)
+
+// add elements for drop down
+
+// // var yearDrop = d3.select(".yearDropdown")
+// var yearDropTop = d3.select(".DropyearTop");
+// uniqueYear.forEach(year => {
+   // yearDrop.append('a').text(year).attr('class',"dropdown-item yearItem")
+// });
+// var selectedYear = null;
+// var yearItems = d3.selectAll('.yearItem')
+// yearItems.on('click', function() {
+   // selectedYear = $(this).text();
+   // yearDropTop.text(`Filter by City: ${$(this).text()} `);
+    // console.log(selectedYear)
+  // });
 
 
 //Catch error
