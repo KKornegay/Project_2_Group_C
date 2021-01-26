@@ -126,7 +126,7 @@ function updateToolTipY (chosenYAxis, circlesGroup){
         labely = "Total Team Salary ($)";
     }
     else if (chosenYAxis === "avg_player_salary") {
-        labely = "Average Player Salary";
+        labely = "Average Player Salary ($)";
     }
     else if (chosenYAxis === "cost_per_win") {
         labely = "Cost Per Win ($)";
@@ -213,7 +213,7 @@ d3.json("year.json").then(function(Pdata, err) {
     var xlabelsgroup = chartGroup.append("g")
         .attr("transform", `translate(${width /2}, ${height +20})`);
 
-    var winLabel = xlabelsgroup.append("text")
+    var regularSeasonWinsLabel = xlabelsgroup.append("text")
         .attr("x", 0)
         .attr("y", 20)
         .attr("value", "win") //value to grab for event listener
@@ -238,29 +238,29 @@ d3.json("year.json").then(function(Pdata, err) {
     // var ylabelsgroup = chartGroup.append("g")
     //     .attr("transform", `translate(0, ${height/ 2})`);
 
-    var obesityLabel = ylabelsgroup.append("text")
+    var totalsalaryLabel = ylabelsgroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", -80)
-        .attr("value", "obesity") //value to grab for event listener
+        .attr("value", "team_salary") //value to grab for event listener
         .classed("active", true)
-        .text("Obesity (%)");
+        .text("Total Team Salary ($)");
 
-    var smokesLabel = ylabelsgroup.append("text")
+    var wincostLabel = ylabelsgroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", -60)
-        .attr("value", "smokes") //value to grab for event listener
+        .attr("value", "cost_per_win") //value to grab for event listener
         .classed("inactive", true)
-        .text("Smokes (%)");
+        .text("Cost Per Win ($)");
 
-    var healthcareLabel = ylabelsgroup.append("text")
+    var averageplayerLabel = ylabelsgroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", 0)
         .attr("y", -40)
-        .attr("value", "healthcare") //value to grab for event listener
+        .attr("value", "avg_player_salary") //value to grab for event listener
         .classed("active", true)
-        .text("Lacks Healthcare (%)");
+        .text("Average Player Salary ($)");
 
     
     //updateToolTip function above csv import
@@ -289,39 +289,39 @@ d3.json("year.json").then(function(Pdata, err) {
             circlesGroup = updateToolTipX(chosenXAxis, circlesGroup);
 
             //changes classes to change bold text
-            if (chosenXAxis === "poverty") {
-                povertyLabel
+            if (chosenXAxis === "wins") {
+                totalsalaryLabel
                     .classed("active", true)
                     .classed("inactive", false);
-                ageLabel
+                wincostLabel
                     .classed("active", false)
                     .classed("inactive", true);
-                incomeLabel
+                averageplayerLabel
                     .classed("active", false)
                     .classed("inactive", true);
             }
-            else if (chosenXAxis === "age"){
-                povertyLabel
-                    .classed("active", false)
-                    .classed("inactive", true);
-                ageLabel
-                    .classed("active", true)
-                    .classed("inactive", false);
-                incomeLabel
-                    .classed("active", false)
-                    .classed("inactive", true);
-            }
-            else if (chosenXAxis === "income") {
-                povertyLabel
-                    .classed("active", false)
-                    .classed("inactive", true);
-                ageLabel
-                    .classed("active", false)
-                    .classed("inactive", true);
-                incomeLabel
-                    .classed("active", true)
-                    .classed("inactive", false);
-            }
+            // else if (chosenXAxis === "age"){
+            //     povertyLabel
+            //         .classed("active", false)
+            //         .classed("inactive", true);
+            //     ageLabel
+            //         .classed("active", true)
+            //         .classed("inactive", false);
+            //     incomeLabel
+            //         .classed("active", false)
+            //         .classed("inactive", true);
+            // }
+            // else if (chosenXAxis === "income") {
+            //     povertyLabel
+            //         .classed("active", false)
+            //         .classed("inactive", true);
+            //     ageLabel
+            //         .classed("active", false)
+            //         .classed("inactive", true);
+            //     incomeLabel
+            //         .classed("active", true)
+            //         .classed("inactive", false);
+            // }
         }
     });
 //updateToolTip function above csv import
@@ -352,39 +352,39 @@ var value = d3.select(this).attr("value");
     circlesGroup = updateToolTipX(chosenXAxis, circlesGroup);
 
     //changes classes to change bold text
-    if (chosenYAxis === "obesity") {
-        obesityLabel
-            .classed("active", true)
-            .classed("inactive", false);
-        smokesLabel
-            .classed("active", false)
-            .classed("inactive", true);
-        healthcareLabel
-            .classed("active", false)
-            .classed("inactive", true);
-    }
-    else if (chosenYAxis === "smokes") {
-        obesityLabel
-            .classed("active", false)
-            .classed("inactive", true);
-        smokesLabel
-            .classed("active", true)
-            .classed("inactive", false);
-        healthcareLabel
-            .classed("active", false)
-            .classed("inactive", true);
-    }
-    else if (chosenYAxis === "healthcare") {
-        obesityLabel
-            .classed("active", false)
-            .classed("inactive", true);
-        smokesLabel
-            .classed("active", false)
-            .classed("inactive", true);
-        healthcareLabel
-            .classed("active", true)
-            .classed("inactive", false);
-    }
+    // if (chosenYAxis === "obesity") {
+    //     obesityLabel
+    //         .classed("active", true)
+    //         .classed("inactive", false);
+    //     smokesLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    //     healthcareLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    // }
+    // else if (chosenYAxis === "smokes") {
+    //     obesityLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    //     smokesLabel
+    //         .classed("active", true)
+    //         .classed("inactive", false);
+    //     healthcareLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    // }
+    // else if (chosenYAxis === "healthcare") {
+    //     obesityLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    //     smokesLabel
+    //         .classed("active", false)
+    //         .classed("inactive", true);
+    //     healthcareLabel
+    //         .classed("active", true)
+    //         .classed("inactive", false);
+    // }
   }
 });
 
