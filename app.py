@@ -133,7 +133,11 @@ def get_teams():
 
     # Convert to Dictionary
     team_list = []
-    for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome, W, L, DivWin, WCWin, LgWin, WSWin, R, AB, H, two_B, three_B, HR in results:
+    for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome,\
+         W, L, DivWin, WCWin, LgWin, WSWin, R, AB, H, two_B, three_B,\
+             HR, BB, SO, SB, CS, HBP, SF, RA, ER, ERA, CG, SHO, SV, IPouts,\
+                 HA, HRA, BBA, SOA, E, DP, FP, name, park, attendance, BPF,\
+                     PPF, teamIDBR, teamIDlahman45, teamIDretro in results:
         team_dict = {}
         team_dict["yearID"] = yearID
         team_dict["lgID"] = lgID
@@ -155,6 +159,34 @@ def get_teams():
         team_dict["two_B"] = two_B
         team_dict["three_B"] = three_B
         team_dict["HR"] = HR
+        team_dict["BB"] = BB
+        team_dict["SO"] = SO
+        team_dict["SB"] = SB
+        team_dict["CS"] = CS
+        team_dict["HBP"] = HBP
+        team_dict["SF"] = SF
+        team_dict["RA"] = RA
+        team_dict["ER"] = ER
+        team_dict["ERA"] = ERA
+        team_dict["CG"] = CG
+        team_dict["SHO"] = SHO
+        team_dict["SV"] = SV
+        team_dict["IPouts"] = IPouts
+        team_dict["HA"] = HA
+        team_dict["HRA"] = HRA
+        team_dict["BBA"] = BBA
+        team_dict["SOA"] = SOA
+        team_dict["E"] = E
+        team_dict["DP"] = DP
+        team_dict["FP"] = FP
+        team_dict["name"] = name
+        team_dict["park"] = park
+        team_dict["attendance"] = attendance
+        team_dict["BPF"] = BPF
+        team_dict["PPF"] = PPF
+        team_dict["teamIDBR"] = teamIDBR
+        team_dict["teamIDlahman45"] = teamIDlahman45
+        team_dict["teamIDretro"] = teamIDretro
         team_list.append(team_dict)
 
     return jsonify(team_list)
