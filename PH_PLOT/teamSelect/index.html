@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Team Cost</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1> Team Cost per Win</h1>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Team</h5>
+          <select id="selDataset" onchange="crazyIdea(value)" onchange="getInfo(this.value)"></select>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <!--end of first container-->
+      <div class="col-md-5">  
+        <div id="bar"></div>
+        
+      </div>
+      <div class="col-md-5">
+        <h4></h4>
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  
+  <script src="appW.js"></script>
+  <!--<script src="./static/js/bonus.js"></script>-->
+
+  
+</body>
+
+</html>
