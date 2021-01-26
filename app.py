@@ -215,17 +215,52 @@ app = Flask(__name__,
             static_folder='static',
             template_folder='templates')
 
-
 @app.route('/')
 def home():
     return render_template('base.html')
 
+@app.route('/viz1')
+def viz1():
+    return render_template('viz1.html')
 
-@app.route('/db_data', methods=['GET'])
-def database_data():
-    # data = data.get_db_data()
-    data = {"this": "is my database data"}
-    return jsonify(data)
+@app.route('/viz2')
+def viz2():
+    return render_template('viz2.html')
+
+
+@app.route('/mlb_data', methods=['GET'])
+def mlb_data():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return a list of all passenger names"""
+    # Query all dates and precipitation
+    results = session.query(mlb_data.year, 
+                            mlb_data.team, 
+                            mlb_data.team_salary, 
+                            mlb_data.avg_player_salary, 
+                            mlb_data.median_player_salary, 
+                            mlb_data.wins, 
+                            mlb_data.cost_per_win, 
+                            mlb_data.championship).all()
+
+    session.close()
+
+    # Convert to Dictionary
+    mlb = []
+    for date, prcp in results:
+        mlb_dict = {}
+        mlb_dict["year"] = year
+        mlb_dict["team"] = team
+        mlb_dict["team_salary"] = team_salary
+        mlb_dict["avg_player_salary"] = avg_player_salary
+        mlb_dict["median_player_salary"] = median_player_salary
+        mlb_dict["wins"] = wins
+        mlb_dict["cost_per_win"] = cost_per_win
+        mlb_dict["championship"] = championship
+        mlb.append(mlb_dict)
+
+    return jsonify(mlb)
 
 
 @app.route('/api_data', methods=['GET'])
@@ -233,6 +268,7 @@ def api_data():
     # data = data.get_api_data()
     data = {"this": "is my api data"}
     return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
