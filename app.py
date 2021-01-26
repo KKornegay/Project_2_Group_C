@@ -133,7 +133,7 @@ def get_teams():
 
     # Convert to Dictionary
     team_list = []
-    for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome in results:
+    for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome, W, L, DivWin, WCWin, LgWin, WSWin, R, AB, H, two_B, three_B, HR in results:
         team_dict = {}
         team_dict["yearID"] = yearID
         team_dict["lgID"] = lgID
@@ -143,6 +143,18 @@ def get_teams():
         team_dict["Ranks"] = Ranks
         team_dict["Gs"] = Gs
         team_dict["Ghome"] = Ghome
+        team_dict["W"] = W
+        team_dict["L"] = L
+        team_dict["DivWin"] = DivWin
+        team_dict["WCWin"] = WCWin
+        team_dict["LgWin"] = LgWin
+        team_dict["WSWin"] = WSWin
+        team_dict["R"] = R
+        team_dict["AB"] = AB
+        team_dict["H"] = H
+        team_dict["two_B"] = two_B
+        team_dict["three_B"] = three_B
+        team_dict["HR"] = HR
         team_list.append(team_dict)
 
     return jsonify(team_list)
