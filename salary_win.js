@@ -1,122 +1,393 @@
-d3.json("year.json").then(function(data2) {
-  console.log(data2)
-});
-// set the dimensions and margins of the graph
-var margin = {top: 100, right: 60, bottom: 50, left: 60},
-    width = 1500 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+// Define svg canvas
+var svgWidth = 1500;
+var svgHeight = 500;
+// Define Margins
+var margin = {
+    top: 20,
+    right: 40,
+    bottom: 80,
+    left: 100
+};
+// Define chart height and width
+var width = svgWidth - margin.left - margin.right;
+var height = svgHeight - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#scatter")
+//create an SVG wrapper, append and SVG group that will hold our chart,
+//and shift the latter by left and top margins.
+var svg = d3
+    .select("#scatter")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
 
-//**************************************************************
+//append an SVG group
+var chartGroup = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-// import csv data set 
+//Initial Params
+var chosenXAxis = "wins";
+var chosenYAxis = "team_salary";
 
-d3.csv("Resources/mlb_data.csv").then(function(data) {
-  data.forEach(d => {
-    d.team_salary = +d.team_salary;
-    d.wins = +d.wins;
-    // console.log(data)
-  });
+//function used for updating x-scale var upon click on axis label
+function xScale(Pdata, chosenXAxis) {
+    //create scales
+    var xLinearScale = d3.scaleLinear()
+        .domain([d3.min(Pdata, d => d[chosenXAxis]) * 0.8,
+          d3.max(Pdata, d => d[chosenXAxis]) * 1.2
+        ])
+        .range([0, width]);
+    return xLinearScale;
+}
+//function used for updating y-scale var upon click on axis label
+function yScale(Pdata, chosenYAxis) {
+    //create scales
+    var yLinearScale = d3.scaleLinear()
+        .domain([d3.max(Pdata, d => d[chosenYAxis]) *1.2,
+          d3.min(Pdata, d => d[chosenYAxis]) * .5    
+        ])
+        .range([0,height]);
 
-// create x axis 
+    return yLinearScale;
+}
+//function used for updating XAxis var upon click on axis label
+function renderXAxes(newXScale, xAxis) {
+    var bottomAxis = d3.axisBottom(newXScale);
 
-var x = d3.scaleLinear()
-  .domain(d3.extent(data.map(d => d.team_salary)))
-  .range([0,width]);
+    xAxis.transition()
+        .duration(1000)
+        .call(bottomAxis);
+    
+    return xAxis;
+}
+//function used for updating yAxis var upon click on axis label
+function renderYAxes (newYScale, yAxis) {
+    var leftAxis = d3.axisLeft(newYScale);
 
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+    yAxis.transition()
+        .duration(1000)
+        .call(leftAxis);
 
-// x label
+    return yAxis;
+}
 
-svg.append("text")
-  .attr("text-anchor", "middle")
-  .attr("x", width / 2)
-  .attr("y", height + 40)
-  .text("Total Team Salary");
+// function used for updating circles group with a transition to
+// new circles
+function renderCircles(circlesGroup, textGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
+    circlesGroup.transition()
+        .duration(1000)
+        .attr("cx", d => newXScale(d[chosenXAxis]))
+        .attr("cy", d => newYScale(d[chosenYAxis]));
 
-// y axis
+        textGroup.transition()
+        .duration(1000)
+        .attr("dx", d => newXScale(d[chosenXAxis]))
+        .attr("dy", d => newYScale(d[chosenYAxis]));    
+    return circlesGroup;
+}
 
-var y = d3.scaleLinear()
-  .domain(d3.extent(data, d => d.wins))
-  .range([0,height]);
-svg.append("g")
-  .call(d3.axisLeft(y));
+//function used for updating circles group with new tooltip
+function updateToolTipX(chosenXAxis, circlesGroup) {
+    var labelx;
 
-// y label
+    if (chosenXAxis === "wins") {
+        labelx = "Regular Season Wins";
+    // }
+    // else if (chosenXAxis === "age"){
+    //     labelx = "Age (Median)";
+    // }
+    // else if (chosenXAxis === "income"){
+    //     labelx = "Houshold Income (Median)";
+    // }
+    
+    var toolTip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([80, -60])
+        .html(function(d) {
+            return (`${d.team}<br>${labelx} ${d[chosenXAxis]}`);
+        });
+    circlesGroup.call(toolTip);
+    console.log(labelx)
 
-svg.append("text")
-  .attr("text-anchor", "middle")
-  .attr("transform", "rotate(-90)")
-  .attr("x", (height / 2) * -1)
-  .attr("dy", (-40))
-  .text("Regular Season Wins");
+    circlesGroup.on("mouseover", function(data) {
+        console.log(data)
+        toolTip.show(data);
+    })
+        //onmouseout event
+        .on("mouseout", function(data, index) {
+            toolTip.hide(data);
+        });
+    return circlesGroup;  
+}
 
-// create dots variables
+function updateToolTipY (chosenYAxis, circlesGroup){
+    var labely;
 
-var gdots = svg.selectAll("g.dot")
-  .data(data)
-  .enter()
-  .append('g');
+    if(chosenYAxis === "team_salary") {
+        labely = "Total Team Salary ($)";
+    }
+    else if (chosenYAxis === "avg_player_salary") {
+        labely = "Average Player Salary";
+    }
+    else if (chosenYAxis === "cost_per_win") {
+        labely = "Cost Per Win ($)";
+    }
+    console.log(labely)
+    var toolTip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([80, -60])
+        .html(function(d) {
+            return (`${d.team}<br>${labelx} ${d[chosenXAxis]}<br>${labely} ${d[chosenYAxis]}`);
+        });
 
-// add dots to gdots
-gdots.append("circle")
-.attr("cx", d => x(d.team_salary))
-.attr("cy", d => y(d.wins))
-.attr("r", 8)
-.style("fill", "#b0e0e6");
+    circlesGroup.call(toolTip);
 
-// add text to gdots
-gdots.append("text")
-  .text(d => d.team)
-  .attr("x", d => x(d.team_salary))
-  .attr("y", d => y(d.wins))
-  .attr("dx", -5)
-  .attr("dy", 2)
-  .style("font-size", "7px")
-  .style(font-weight, "bold");
+    circlesGroup.on("mouseover", function(data) {
+        console.log(data)
+        toolTip.show(data);
+    })
+        //onmouseout event
+        .on("mouseout", function(data, index) {
+            toolTip.hide(data);
+        });
+    return circlesGroup;
+}
 
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//Retrieve data from the CSV file and execute everything below
+d3.json("year.json").then(function(Pdata, err) {
+    if (err) throw err;
 
-// create varible for dropdown
-// d3.json("single_year.json").then(function(data2) {
-//   console.log(data2)
-// });
+    //Parse data
+    Pdata.forEach(function(data) {
+        data.wins = +data.wins;
+        data.avg_player_salary = +data.avg_player_salary;
+        data.cost_per_win = +data.cost_per_win;
+        data.team_salary = +data.team_salary;
+    });
 
-// var year = data.map(data => data.year);
-// function makeUnique(value, index, self) {
-  //return(self.indexOf(calue) === index;
-// }
+    //xlinearScale function above csv
+    var xLinearScale = xScale(Pdata, chosenXAxis);
+    
+    //create y scale function
+    var yLinearScale = yScale(Pdata, chosenYAxis);
+    
+    //create initial axis function
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3. axisLeft(yLinearScale);
 
-// var uniqueYears = years.filter(makeUnique)
+    // append x axis
+    var xAxis = chartGroup.append("g")
+        .classed("x-axis", true)
+        .attr("transform", `translate(0, ${height})`)
+        .call(bottomAxis);
 
-// add elements for drop down
+    // append y axis
+  
+    var yAxis = chartGroup.append("g")
+        .classed("y-axis", true)
+        .attr("transform", `translate(0, 0)`)
+        .call(leftAxis);
 
-// // var yearDrop = d3.select(".yearDropdown")
-// var yearDropTop = d3.select(".DropyearTop");
-// uniqueYear.forEach(year => {
-   // yearDrop.append('a').text(year).attr('class',"dropdown-item yearItem")
-// });
-// var selectedYear = null;
-// var yearItems = d3.selectAll('.yearItem')
-// yearItems.on('click', function() {
-   // selectedYear = $(this).text();
-   // yearDropTop.text(`Filter by City: ${$(this).text()} `);
-    // console.log(selectedYear)
-  // });
+    //append intial circles
+    var circlesGroup = chartGroup.selectAll("circle")
+        .data(Pdata)
+        .enter()
+        .append("circle")
+        .attr("cx", d => xLinearScale(d[chosenXAxis]))
+        .attr("cy", d => yLinearScale(d[chosenYAxis]))
+        .attr("r", 15)
+        .attr("fill", "cyan")
+        .attr("opacity", ".5");
 
+        var textGroup = chartGroup.selectAll("text.team")
+        .data(Pdata)
+        .enter()
+        .append("text")
+        .attr("class", "team")
+        .text(d => d.abbr)
+        .attr("dx", d => xLinearScale(d[chosenXAxis]))
+        .attr("dy", d => yLinearScale(d[chosenYAxis]))
+        .style("text-anchor", "middle")
+        .style("font-size", "10px")
+    
+    //create x-labelgroup for labels
+    var xlabelsgroup = chartGroup.append("g")
+        .attr("transform", `translate(${width /2}, ${height +20})`);
 
-//Catch error
-}).catch(e => {
-  console.log(e);
+    var winLabel = xlabelsgroup.append("text")
+        .attr("x", 0)
+        .attr("y", 20)
+        .attr("value", "win") //value to grab for event listener
+        .classed("active", true)
+        .text("Regular Season Wins");
+
+    // var ageLabel = xlabelsgroup.append("text")
+    //     .attr("x", 0)
+    //     .attr("y", 40)
+    //     .attr("value", "age") //value to grab for event listener
+    //     .classed("inactive", true)
+    //     .text("Age (Median)");
+
+    // var incomeLabel = xlabelsgroup.append("text")
+    //     .attr("x", 0)
+    //     .attr("y", 60)
+    //     .attr("value", "income") //value to grab for event listener
+    //     .classed("inactive", true)
+    //     .text("Household Income (Median)");
+
+    // //create y-labelgroup for labels
+    // var ylabelsgroup = chartGroup.append("g")
+    //     .attr("transform", `translate(0, ${height/ 2})`);
+
+    var obesityLabel = ylabelsgroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", 0)
+        .attr("y", -80)
+        .attr("value", "obesity") //value to grab for event listener
+        .classed("active", true)
+        .text("Obesity (%)");
+
+    var smokesLabel = ylabelsgroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", 0)
+        .attr("y", -60)
+        .attr("value", "smokes") //value to grab for event listener
+        .classed("inactive", true)
+        .text("Smokes (%)");
+
+    var healthcareLabel = ylabelsgroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", 0)
+        .attr("y", -40)
+        .attr("value", "healthcare") //value to grab for event listener
+        .classed("active", true)
+        .text("Lacks Healthcare (%)");
+
+    
+    //updateToolTip function above csv import
+    var circlesGroup = updateToolTipX(chosenXAxis, circlesGroup);
+
+    //x axis labels event listener
+    xlabelsgroup.selectAll ("text")
+        .on("click", function() {
+        //get value of selection
+        var value = d3.select(this).attr("value");
+        if(value !== chosenXAxis) {
+            //replaces chosenXAxis with value
+            chosenXAxis =value;
+            //console.log(chosenXAxis)
+            //functions here found above csv import
+            //update x scale for new data
+            xLinearScale = xScale(Pdata, chosenXAxis);
+
+            //updates x axis with transition
+            xAxis = renderXAxes(xLinearScale, xAxis);
+
+            //updates circles with new x values
+            circlesGroup = renderCircles(circlesGroup, textGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+
+            //updates tooltips with new info
+            circlesGroup = updateToolTipX(chosenXAxis, circlesGroup);
+
+            //changes classes to change bold text
+            if (chosenXAxis === "poverty") {
+                povertyLabel
+                    .classed("active", true)
+                    .classed("inactive", false);
+                ageLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+                incomeLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+            }
+            else if (chosenXAxis === "age"){
+                povertyLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+                ageLabel
+                    .classed("active", true)
+                    .classed("inactive", false);
+                incomeLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+            }
+            else if (chosenXAxis === "income") {
+                povertyLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+                ageLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+                incomeLabel
+                    .classed("active", true)
+                    .classed("inactive", false);
+            }
+        }
+    });
+//updateToolTip function above csv import
+var circlesGroup = updateToolTipX(chosenXAxis, circlesGroup)
+//y axis labels event listener
+ylabelsgroup.selectAll("text")
+.on("click", function() {
+//get value of selection
+var value = d3.select(this).attr("value");
+  if(value !== chosenYAxis) {
+
+    //replaces chosenYAxis with value
+    chosenYAxis = value;
+
+    //console.log(chosenYAxis)
+
+    //function here found above csv import
+    //updates y scale for new data
+    yLinearScale = yScale(Pdata, chosenYAxis);
+
+    //updates x axis with transition
+    yAxis = renderYAxes(yLinearScale, yAxis);
+
+    //updates circles with new x values
+    circlesGroup = renderCircles(circlesGroup, textGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
+
+    //updates tooltips with new info
+    circlesGroup = updateToolTipX(chosenXAxis, circlesGroup);
+
+    //changes classes to change bold text
+    if (chosenYAxis === "obesity") {
+        obesityLabel
+            .classed("active", true)
+            .classed("inactive", false);
+        smokesLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        healthcareLabel
+            .classed("active", false)
+            .classed("inactive", true);
+    }
+    else if (chosenYAxis === "smokes") {
+        obesityLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        smokesLabel
+            .classed("active", true)
+            .classed("inactive", false);
+        healthcareLabel
+            .classed("active", false)
+            .classed("inactive", true);
+    }
+    else if (chosenYAxis === "healthcare") {
+        obesityLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        smokesLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        healthcareLabel
+            .classed("active", true)
+            .classed("inactive", false);
+    }
+  }
 });
 
+}).catch(function(error) {
+    console.log(error);
+});
