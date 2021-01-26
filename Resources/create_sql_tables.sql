@@ -1,15 +1,17 @@
 CREATE TABLE mlb_data (
+	id SERIAL PRIMARY KEY,
 	year INT,
   	team VARCHAR(30) NOT NULL,
-  	team_salary NUMERIC,
-  	avg_player_salary NUMERIC,
-  	median_player_salary NUMERIC,
+  	team_salary VARCHAR(30),
+  	avg_player_salary VARCHAR(30),
+  	median_player_salary VARCHAR(30),
 	wins INT,
-	cost_per_win NUMERIC,
+	cost_per_win VARCHAR(30),
 	championship BOOLEAN
 );
 
 CREATE TABLE Salaries (
+	id SERIAL PRIMARY KEY,
 	yearID INT,
   	teamID VARCHAR(30) NOT NULL,
   	lgID VARCHAR(30) NOT NULL,
@@ -18,6 +20,7 @@ CREATE TABLE Salaries (
 );
 
 CREATE TABLE Teams (
+	id SERIAL PRIMARY KEY,
 	yearID INT,
   	lgID VARCHAR(30) NOT NULL,
 	teamID VARCHAR(30) NOT NULL,

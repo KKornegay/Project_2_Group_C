@@ -205,11 +205,27 @@
 #     app.run(debug=True)
 
 from flask import Flask, render_template, jsonify
-import data
+# import data
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
+
+
+# #################################################
+# # Database Setup
+# #################################################
+engine = create_engine("postgresql://postgres:postgres@localhost:5432/MLB_DB")
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(engine, reflect=True)
+# print(dir(Base.classes))
+# Save reference to the table
+mlb_data = Base.classes.mlb_data
+# station = Base.classes.station
+
 
 app = Flask(__name__, 
             static_folder='static',
@@ -229,7 +245,7 @@ def viz2():
 
 
 @app.route('/mlb_data', methods=['GET'])
-def mlb_data():
+def get_mlb_data():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
@@ -248,7 +264,7 @@ def mlb_data():
 
     # Convert to Dictionary
     mlb = []
-    for date, prcp in results:
+    for year, team, team_salary, avg_player_salary, median_player_salary, wins, cost_per_win, championship in results:
         mlb_dict = {}
         mlb_dict["year"] = year
         mlb_dict["team"] = team
@@ -263,11 +279,11 @@ def mlb_data():
     return jsonify(mlb)
 
 
-@app.route('/api_data', methods=['GET'])
-def api_data():
-    # data = data.get_api_data()
-    data = {"this": "is my api data"}
-    return jsonify(data)
+# @app.route('/api_data', methods=['GET'])
+# def api_data():
+#     # data = data.get_api_data()
+#     data = {"this": "is my api data"}
+#     return jsonify(data)
 
 
 if __name__ == '__main__':
