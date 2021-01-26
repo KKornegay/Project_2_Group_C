@@ -387,7 +387,7 @@ var value = d3.select(this).attr("value");
     // }
   }
 });
-
-}).catch(function(error) {
+})
+.catch(function(error) {
     console.log(error);
 });
