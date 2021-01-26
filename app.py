@@ -132,20 +132,20 @@ def get_teams():
     session.close()
 
     # Convert to Dictionary
-    mlb = []
-    for year, team, team_salary, avg_player_salary, median_player_salary, wins, cost_per_win, championship in results:
-        mlb_dict = {}
-        mlb_dict["year"] = year
-        mlb_dict["team"] = team
-        mlb_dict["team_salary"] = team_salary
-        mlb_dict["avg_player_salary"] = avg_player_salary
-        mlb_dict["median_player_salary"] = median_player_salary
-        mlb_dict["wins"] = wins
-        mlb_dict["cost_per_win"] = cost_per_win
-        mlb_dict["championship"] = championship
-        mlb.append(mlb_dict)
+    team_list = []
+    for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome in results:
+        team_dict = {}
+        team_dict["yearID"] = yearID
+        team_dict["lgID"] = lgID
+        team_dict["teamID"] = teamID
+        team_dict["franchID"] = franchID
+        team_dict["divID"] = divID
+        team_dict["Ranks"] = Ranks
+        team_dict["Gs"] = Gs
+        team_dict["Ghome"] = Ghome
+        team_list.append(team_dict)
 
-    return jsonify(mlb)
+    return jsonify(team_list)
 # @app.route('/api_data', methods=['GET'])
 # def api_data():
 #     # data = data.get_api_data()
