@@ -27,10 +27,11 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 -	JavaScript
 -	JavaScript library
 	-	[ECMAScript Internationalization API](https://402.ecma-international.org/1.0/) 		
+-	Python
 -	SQL
 -	SQL lite
--	Python
--	
+
+	
 
 
 ### Data Sources:
