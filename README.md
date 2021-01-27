@@ -26,7 +26,7 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 -	HTML/CSS
 -	JavaScript
 -	JavaScript library
-		[ECMAScript Internationalization API](https://402.ecma-international.org/1.0/) 		
+	-	[ECMAScript Internationalization API](https://402.ecma-international.org/1.0/) 		
 -	SQL
 -	SQL lite
 -	Python
