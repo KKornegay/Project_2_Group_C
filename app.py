@@ -120,7 +120,7 @@ def get_teams():
                             teams.E,
                             teams.DP,
                             teams.FP,
-                            teams.name,
+                            teams.team_name,
                             teams.park,
                             teams.attendance,
                             teams.BPF,
@@ -136,7 +136,7 @@ def get_teams():
     for yearID, lgID, teamID, franchID, divID, Ranks, Gs, Ghome,\
          W, L, DivWin, WCWin, LgWin, WSWin, R, AB, H, two_B, three_B,\
              HR, BB, SO, SB, CS, HBP, SF, RA, ER, ERA, CG, SHO, SV, IPouts,\
-                 HA, HRA, BBA, SOA, E, DP, FP, name, park, attendance, BPF,\
+                 HA, HRA, BBA, SOA, E, DP, FP, team_name, park, attendance, BPF,\
                      PPF, teamIDBR, teamIDlahman45, teamIDretro in results:
         team_dict = {}
         team_dict["yearID"] = yearID
@@ -179,7 +179,7 @@ def get_teams():
         team_dict["E"] = E
         team_dict["DP"] = DP
         team_dict["FP"] = FP
-        team_dict["name"] = name
+        team_dict["team_name"] = team_name
         team_dict["park"] = park
         team_dict["attendance"] = attendance
         team_dict["BPF"] = BPF
