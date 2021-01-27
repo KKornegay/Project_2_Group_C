@@ -1,49 +1,65 @@
-.iframeContainer {
-  padding: 20px;
-  border: 1px solid #e3e3e3;
-}
 
 /* Sticky Footer rules (https://getbootstrap.com/examples/sticky-footer/) */
-html {
-  position: relative;
-  min-height: 100%;
-}
+html,
 
 body {
   /* Padding bottom by footer height */
-  padding-bottom: 80px;
-  background: #cecbcb;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #037a0d;
+  color: white;
 }
+
+.navbar {
+  padding: 5px;
+  margin: 0;
+  background:  #b46804;
+  color:white;
+}
+/* This CSS styles the ufo icon in the navbar */
+.nav-ufo {
+  position: absolute;
+  bottom: 5px;
+  left: 150px;
+  width: 35px;
+  color: white;
+}
+
+
 .greenbox{
-  
-  font-family: Cursive, "Brush Script MT";
+  padding: px;
+  right: 0;
+  bottom: 0;
+  font-family:Helvetica, sans-serif;
   width: 100; /* Set the fixed height of the footer here */
-  height: 150px;
+  height: 10px;
   background-color:  #f5f5f5;
   color: yellow;
   background:  #037a0d;
+  margin:1 ;
 }
 
-.maintext{
+.article{
   font-size:24px ;
+  margin: 10;
+  padding: 50px;
+  right: 10;
+  left:200;
+  bottom: 100;
+  top: 100;
 }
 
-#footer {
-  
-  bottom: 0;
-  width: 100; /* Set the fixed height of the footer here */
-  height: 10px;
-  padding-top: 20px;
-  padding-bottom: 40px;
+/* The footer is positioned at the bottom of the page */
+.footerX {
+
+  min-height: 50px;
+  background:  #b46804;
   text-align: center;
-  background-color: #f5f5f5;
-  background: #b46804;
-  
-}
-
-#footer p {
+  color: yellow;
+  padding: 5px;
   margin: 0;
-  font-size: 16px;
+  
 }
 
 .tooltip {
@@ -66,4 +82,10 @@ body {
   
   fill: #551aaf;
   text-anchor: middle;
+}
+.chart{
+  background: #eafaea;
+  padding: 100px;
+  padding-top: 8px;
+
 }
