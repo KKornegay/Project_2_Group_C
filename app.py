@@ -16,11 +16,11 @@ engine = create_engine("postgresql://postgres:postgres@localhost:5432/MLB_DB")
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
-# print(dir(Base.classes))
+print(Base.classes.keys())
 # Save reference to the table
 mlb_data = Base.classes.mlb_data
-teams = Base.classes.Teams
-
+teams = Base.classes.teams
+salaries = Base.classes.salaries
 
 app = Flask(__name__, 
             static_folder='static',
@@ -190,12 +190,34 @@ def get_teams():
         team_list.append(team_dict)
 
     return jsonify(team_list)
-# @app.route('/api_data', methods=['GET'])
-# def api_data():
-#     # data = data.get_api_data()
-#     data = {"this": "is my api data"}
-#     return jsonify(data)
 
+@app.route('/salaries', methods=['GET'])
+def get_salaries():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    """Return a list of all passenger names"""
+    # Query all dates and precipitation
+    results = session.query(salaries.yearid, 
+                            salaries.teamid, 
+                            salaries.lgid, 
+                            salaries.playerid, 
+                            salaries.salary).all()
+    
+    session.close()
+
+    # Convert to Dictionary
+    salary_list = []
+    for yearid, teamid, lgid, playerid, salary in results:
+        salary_dict = {}
+        salary_dict["yearid"] = yearid
+        salary_dict["teamid"] = teamid
+        salary_dict["lgid"] = lgid
+        salary_dict["playerid"] = playerid
+        salary_dict["salary"] = salary
+        salary_list.append(salary_dict)
+                            
+    return jsonify(salary_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
