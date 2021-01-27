@@ -14,7 +14,10 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 - [x] Concept design and project planning.
 - [x] Create Github Repository.
 - [x] Evaluate and obtain data sources.
-- [ ] Create SQL database to archive data.
+- [ ] Create databases to archive data.
+  - [ ] Create SQL database
+  - [ ] Create SQL lite database
+  
 - [ ] Develop a Python Flask application to create API's enabling users to explore data. 
 - [ ] Generate a website with instructions for users to access API's and website content.
 - [ ] Design additional web pages containing analysis, charts, interactive experiences, and data allowing users to investigate correlations between team salaries and outcomes.
@@ -22,8 +25,13 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 ### Resources:
 -	HTML/CSS
 -	JavaScript
+-	JavaScript library
+		* [ECMAScript Internationalization API](https://402.ecma-international.org/1.0/) 
 -	SQL
+-	SQL lite
 -	Python
+-	
+
 
 ### Data Sources:
 	
@@ -47,7 +55,8 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 
 
 ### Charts: 
--	Scatterplot showing average team cost per win/per season.
+-	Interactive bubble chart contrasting average team cost per win/per season by year.
+-	Interactive bubble chart contrasting average team cost per win/per season by team.
 -	Bubble chart representing all 30 champions (from 1985-2015). 
 -	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
 
