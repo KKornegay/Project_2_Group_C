@@ -61,7 +61,7 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 -	Bubble chart representing all 30 champions (from 1985-2015). 
 -	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
 
-![bubleChartExample.png](images/bubleChartExample.png)
+![bubleChartExample.png](images/bubleChartExample.png =250x250)
 	
 ### Questions to be answered:
 1.	What was the average cost per team win based on total salaries each season?
