@@ -84,8 +84,12 @@ body {
   text-anchor: middle;
 }
 .chart{
-  background: #eafaea;
+  background: #f8fcf8;
   padding: 100px;
   padding-top: 8px;
-
+  color: black
 }
+h3{
+  color:yellow
+}
+
