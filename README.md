@@ -3,9 +3,13 @@
 ![coverArt1.png](images/coverArt1.png)
 
 
-## <b><div align = "center">Do higher MLB player salaries lead to greater team success?</div></b>
+## <b><div align = "center">Moneyball? Who got the most bang for their buck?</div></b>
 
-An analysis of MLB team salary data from 1985-2015 was evaluated to determine if the highest spending teams achieve the greatest levels of success. Relationships considered include:
+### Background:
+Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a culture of 
+"haves" and "have nots."
+	
+	
 -	Cost/Win for each team per season -> total team salary/wins.
 -	Mean league Cost/Win per season -> total league salaries/total league wins
 -	Cost/Win for each year’s championship team vs. League median cost per win.
