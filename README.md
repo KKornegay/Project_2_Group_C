@@ -6,8 +6,7 @@
 ## <b><div align = "center">Moneyball? Who got the most bang for their buck?</div></b>
 
 ### Background:
-Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a culture of 
-"haves" and "have nots."
+Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a culture of "haves" and "have nots."
 	
 	
 -	Cost/Win for each team per season -> total team salary/wins.
