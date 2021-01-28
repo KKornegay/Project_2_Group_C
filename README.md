@@ -6,7 +6,7 @@
 ## <b><div align = "center">Moneyball? Who gets the most bang for their buck?</div></b>
 
 ### Background:
-	Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a 
+Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a 
 culture of "haves" and "have nots." Teams in larger media markets, like New York and Los Angeles, have almost unlimited resources to devote to signing and 
 acquiring baseball's best, and most expensive talents.
 	In 1998, the Oakland Athletics, a classic "have not" franchise, hired a little-known, former utility player named Billy Beane as general manager. 
