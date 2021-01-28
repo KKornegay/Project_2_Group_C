@@ -29,13 +29,13 @@ Additionally, users can use our database to explore their favorite team's spendi
 - [x] Concept design and project planning.
 - [x] Create Github Repository.
 - [x] Evaluate and obtain data sources.
-- [ ] Create databases to archive data.
-  - [ ] Create SQL database
-  - [ ] Create SQL lite database
+- [x] Create databases to archive data.
+  - [x] Create SQL database
+  - [x] Create SQL lite database
   
-- [ ] Develop a Python Flask application to create API's enabling users to explore data. 
-- [ ] Generate a website with instructions for users to access API's and website content.
-- [ ] Design additional web pages containing analysis, charts, interactive experiences, and data allowing users to investigate correlations between team salaries and outcomes.
+- [x] Develop a Python Flask application to create API's enabling users to explore data. 
+- [x] Generate a website with instructions for users to access API's and website content.
+- [x] Design additional web pages containing analysis, charts, interactive experiences, and data allowing users to investigate correlations between team salaries and outcomes.
 
 ### Resources:
 -	HTML/CSS
