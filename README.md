@@ -65,10 +65,7 @@ Additionally, users can use our database to explore their favorite team's spendi
 	
    2. [USA Today: MLB Team Salaries](https://www.usatoday.com/sports/mlb/salaries/2019/team/all/)
       
-      Baseball Databank is a compilation of historical baseball data in aconvenient, tidy format, distributed under Open Data terms.
-      This version of the Baseball databank was downloaded from [Sean Lahman's website](http://www.seanlahman.com/baseball-archive/statistics/). Data sets employed were:
-      +  [Teams.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Teams.csv) (537 KB, Total columns available: 48)
-      +  [Saleries.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Salaries.csv) (756 KB, Total columns available: 5)
+      USA TODAY's baseball salaries database contains year-by-year listings of salaries for Major League Baseball players on opening day rosters and disabled lists, 1988 	through the current season. Figures, compiled by USA TODAY, are based on documents obtained from the MLB Players Association, club officials and filed with Major League Baseball's central office. Deferred payments and incentive clauses are not included. Team payrolls do not include money paid or received in trades or for players who have been released. Average and median salaries reported by USA TODAY may differ from numbers that are reported elsewhere.
    
 
 
