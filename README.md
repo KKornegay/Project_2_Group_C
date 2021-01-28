@@ -3,12 +3,27 @@
 ![coverArt1.png](images/coverArt1.png)
 
 
-## <b><div align = "center">Do higher MLB player salaries lead to greater team success?</div></b>
+## <b><div align = "center">Moneyball? Who gets the most bang for their buck?</div></b>
 
-An analysis of MLB team salary data from 1985-2015 was evaluated to determine if the highest spending teams achieve the greatest levels of success. Relationships considered include:
--	Cost/Win for each team per season -> total team salary/wins.
--	Mean league Cost/Win per season -> total league salaries/total league wins
--	Cost/Win for each year’s championship team vs. League median cost per win.
+### Background:
+Major League Baseball is the only league of the four major sports not to employ a hard salary cap. The lack of spending restrictions results in a 
+culture of "haves" and "have nots." Teams in larger media markets, like New York and Los Angeles, have almost unlimited resources to devote to signing and 
+acquiring baseball's best, and most expensive talents.
+
+In 1998, the Oakland Athletics, a classic "have not" franchise, hired a little-known, former utility player named Billy Beane as general manager. 
+Under some of the tightest spending constraints, Oakland was struggling to compete with the New York Yankees, Boston Red Sox and other "haves." Beane and 
+his lieutenants eschewed longheld baseball wisdom that emphasized players who hit for high average, knocked in a lot of runs (RBI) and stole a lot of bases. 
+Players who compiled these types of stats, commanded large salaries. 
+
+Instead Oakland utilized an emerging set of analytics called sabermetrics which placed importance stats like on base percentage and slugging percentage. 
+As these stats weren't traditionally regarded as important, players who excelled in these areas generally commanded lower salaries.
+
+As a result of this revolutionary approach, which became known as "Moneyball, Oakland has consistently competed with teams that spend as much as six times
+more money on players salaries. This phenomenon was the subject of the 2003 book *"Moneyball: The Art of Winning an Unfair Game,"* by Michael Lewis; as well as 
+a 2011 feature film starring Brad Pitt and Jonah Hill.
+
+This project provides a cursory glance at "Moneyball" and whether Beane and the Athletics organization were successful in getting "bang for their buck." 
+Additionally, users can use our database to explore their favorite team's spending and win trends over the last 20 years. 
 
 ### Process: 
 - [x] Concept design and project planning.
@@ -48,7 +63,13 @@ An analysis of MLB team salary data from 1985-2015 was evaluated to determine if
 	
 	
 	
-   2. *Additional sources TBD	
+   2. [USA Today: MLB Team Salaries](https://www.usatoday.com/sports/mlb/salaries/2019/team/all/)
+      
+      Baseball Databank is a compilation of historical baseball data in aconvenient, tidy format, distributed under Open Data terms.
+      This version of the Baseball databank was downloaded from [Sean Lahman's website](http://www.seanlahman.com/baseball-archive/statistics/). Data sets employed were:
+      +  [Teams.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Teams.csv) (537 KB, Total columns available: 48)
+      +  [Saleries.csv](https://www.kaggle.com/open-source-sports/baseball-databank?select=Salaries.csv) (756 KB, Total columns available: 5)
+   
 
 
 

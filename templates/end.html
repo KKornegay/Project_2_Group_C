@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Moneyball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="static/css/styleEND.css">
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+  {% block main %}
+  <div class="wrapper">
+    <div class="hero text-center">
+      <h1>Final Thoughts</h1>
+      <p></p>
+    </div>
+    <div class="container">
+      
+        <div class="col-md-10">
+          <div id="inro" class="">
+            <h2>Final Analysis</h2>
+            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa 
+              quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam 
+              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut 
+              labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis 
+              suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate 
+              velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+            </p>
+        </div>
+        <div class="4-col">  
+            <h2>Resources</h2>
+            <p>The following resources were  employed:</p>
+            <li>HTML/CSS</li>
+            <li>JavaScript</li>
+            <li>JavaScript library: <a href="https://402.ecma-international.org/1.0/">ECMAScript Internationalization API</a>	</li>
+            <li>Python</li>
+            <li>Pyton Pandas</li>
+            <li>SQL</li>
+            <li>SQL lite</li>
+        </div>
+        <div class="4-col">  
+          <h2>Data Sources:</h2>
+          <p>The following data sources were  employed:</p>
+          <li><a href="https://www.kaggle.com/open-source-sports/baseball-databank?select=HallOfFame.csv">Kaggle:Baseball Databank</a>Baseball Databank is a compilation of historical baseball data in aconvenient, tidy format, distributed under Open Data terms.
+            This version of the Baseball databank was downloaded from <a href="http://www.seanlahman.com/baseball-archive/statistics/">Sean Lahman's website</a>. Data sets employed were:	</li>
+          
+         
+                  <li style=margin-left:10%><a href= "https://www.kaggle.com/open-source-sports/baseball-databank?select=Teams.csv">Teams.csv</a> (537 KB, Total columns available: 48)</li>
+                  <li style=margin-left:10%><a href= "https://www.kaggle.com/open-source-sports/baseball-databank?select=Salaries.csv">Saleries.csv</a> (756 KB, Total columns available: 5)</li>
+                    
+    
+      </div>
+      &nbsp;&nbsp; 
+      <h1></h>
+      <h1></h>
+      <h1></h>
+      <h1></h>
+      <h1></h>
+      <h1></h>
+      &nbsp;&nbsp; 
+      &nbsp;&nbsp; 
+
+
+
+
+      {% endblock %} 
+    </div>
+    <footer class="footer">
+      <span>Project Moneyball &copy; 2021</span>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+</body>
+
+</html>
