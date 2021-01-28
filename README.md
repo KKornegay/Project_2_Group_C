@@ -79,7 +79,7 @@ Additionally, users can use our database to explore their favorite team's spendi
 -	Bubble chart representing all 30 champions (from 1985-2015). 
 -	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
 
-![bubleChartExample.png](images/bubleChartExample.png |width = 100)
+![bubleChartExample.png](bubleChartExample.png)
 	
 ### Questions to be answered:
 1.	What was the average cost per team win based on total salaries each season?
