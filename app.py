@@ -28,15 +28,19 @@ app = Flask(__name__,
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('landing.html')
 
-@app.route('/viz1')
+@app.route('/team')
 def viz1():
-    return render_template('viz1.html')
+    return render_template('Teamapp.html')
 
-@app.route('/viz2')
+@app.route('/year')
 def viz2():
-    return render_template('viz2.html')
+    return render_template('Yearapp.html')
+
+@app.route('/final_thoughts')
+def endpoint():
+    return render_template('end.html')
 
 
 @app.route('/mlb_data', methods=['GET'])

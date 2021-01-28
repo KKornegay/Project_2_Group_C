@@ -54,7 +54,7 @@ p{
 .navbar {
   padding: 5px;
   margin: 0;
-  background:  #b46804;
+  background-color:  #b46804 !important;
 }
 
 /* This CSS styles the ufo icon in the navbar */
