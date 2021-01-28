@@ -16,10 +16,10 @@ function uniqueArray4(a) {
 
 function cIdea(teamValue){
   console.log(`Crazy Team input from menu : ${teamValue}`);
-  var inputYear = teamValue;
+  var inputTeam = teamValue;
   
   //console.log(inputYear)
-  return inputYear
+  //return inputTeam
   
 };  
 
@@ -136,7 +136,7 @@ d3.json("assets/data/year.json").then(function(raw) {
         // needed for bubble label
         //console.log(data.abbr)
     });
-    
+    // selctedYear  is a filterd data aray 
 
 
 

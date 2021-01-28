@@ -4,7 +4,7 @@ console.log("Annual Cost/Win");
 // Block Funcitons
 //BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
-// Linear least squares  regresion
+// Linear least squares  regresion      #######################################################################
 function linearRegression(y,x){
   var lr = {};
   var n = y.length;
@@ -29,15 +29,29 @@ function linearRegression(y,x){
 
   return lr;
 }
+// Linear least squares  regresion      #######################################################################
+
+
+
+
+
+
+
+
+
+
+
 
 // identifies unieque elements in an array or removes duplicates
 function uniqueArray4(a) {
   return [...new Set(a)];
 };
-
+// cIdea is caliing in HTML code line 38
 function cIdea(teamValue){
   console.log(`Crazy Team input from menu : ${teamValue}`);
-        drawChart(teamValue);
+      
+      drawChart(teamValue);
+      
 };
 
 //  Changes data plot for championship wins to green
@@ -67,10 +81,9 @@ const formatterTWO = new Intl.NumberFormat('en-US', {
 
 // Setup Dropdown Variable
 var dropdown = d3.select("#selDataset");
-// dropdown.on("change", cIdea);
-//console.log(`dropdown value: ${dropdown}`);
 
-var sample945 = 2018
+
+var yearSample = 2018
 //BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 // BLOCK Graph paramter set up
 //*****************************************************
@@ -98,6 +111,8 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 var rawData = '';
+
+
 // NEW BLOCK MAIN Graphing Block
 // Import Data +++++++++++++++++++++++++++
 d3.json("assets/data/year.json").then(function(raw) {
@@ -109,14 +124,14 @@ d3.json("assets/data/year.json").then(function(raw) {
     var yearList = raw.map(raw => raw.year);
     yearList = uniqueArray4(yearList);
     console.log(yearList)
-
+    
 
         // populates pull down list with team names/// IT WORKS!!!! YES!!!!!!!!!
         yearList.forEach(i =>
                 d3.select("select").append("option").text(i).property("value", i)
         );
-
-     drawChart(selctedYear);
+    
+     
   }).catch(function(error) {
     console.log(error);
   });
@@ -125,10 +140,11 @@ d3.json("assets/data/year.json").then(function(raw) {
 
 // Function to draw chart
 function drawChart(yearPickedInDropDown) {
-      // sends value to cIdea
+  
+      // creates the aray for plotting
       var selctedYear = rawData.filter(rawData => rawData.year == yearPickedInDropDown);
-        console.log(selctedYear)
-
+      
+      
     // Step 1: Parse Data/Cast as numbers
     // ==============================
     selctedYear.forEach(function(data) {
@@ -136,27 +152,45 @@ function drawChart(yearPickedInDropDown) {
         // x axis
         wins = +data.wins;
         //year = +data.year;
-        //obesityLow = +data.obesityLow
-        //obesityHigh = +data.obesityHigh
-        // smokes = +data.smokes
-        // smokesLow = +data.smokesLow
-        // smokesHigh = +data.smokesHigh
 
         //y axis
         cost_per_win = +data.cost_per_win
         team_salary = +data.team_salary;
         avg_player_salary = +data.avg_player_salary
         median_player_salary= +data.median_player_salary
-        // age= +data.age
-
-        // console.log("data1");
-        // console.log(wins);
-
-        // needed for bubble label
-        //console.log(data.abbr)
-
-
+        
+        //var winsAveXplot = d3.mean(wins);
+        
+        //console.log(`list wins : ${wins}`)
+        
+        
     });
+    //
+    // step 1.5 Calulate averages for x any y plots
+    //=======================================================
+    var winsAveX = Math.round(d3.mean(selctedYear, d => d.wins));
+    var winsMaxX = Math.round(d3.max(selctedYear, d => d.wins))
+    var winsMinX = Math.round(d3.min(selctedYear, d => d.wins))
+    
+    
+    var cost_perAveY = Math.round(d3.mean(selctedYear, d => d.cost_per_win));
+    var cost_perMaxY= Math.round(d3.max(selctedYear, d => d.cost_per_win)) 
+    var cost_perMinY= Math.round(d3.min(selctedYear, d => d.cost_per_win)) 
+
+    console.log(`average of  wins : ${winsAveX}`)
+    console.log(`Max of  wins : ${winsMaxX}`)
+    
+    console.log(`average of  costperwin : ${cost_perAveY}`)
+    console.log(`Max of  costperwin : ${cost_perMaxY }`)
+    console.log(`Min of  costperwin : ${cost_perMinY}`)
+    
+    gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+    gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+
+
+
+
+
     //
     // Step 2: Create scale functions
     // ==============================
@@ -197,16 +231,17 @@ function drawChart(yearPickedInDropDown) {
     .data(selctedYear)
     .enter()
     .append("circle")
+    
+
     .attr("cx", d => xLinearScale(d.wins))
     .attr("cy", d => yLinearScale(d.cost_per_win))
     .attr("r", "20")
     .attr("fill", d=> winColor(d.championship))
     //.attr("text", d => d.team) probaly not needed
     .attr("opacity", ".5");
+    
 
-
-
-    // New effort to label bubbles with state abreviation (effort 1/12/2011 #1)
+    // New effort to label bubbles with state abreviation 
 
       var statename = chartGroup.append("g")
       var statetext = statename.selectAll("text")
@@ -270,4 +305,76 @@ function drawChart(yearPickedInDropDown) {
       .attr("font-size", "30px")
       .style("fill", "green")
       .text("Wins");
+  return yearPickedInDropDown
+  
+  
+  
+}
+
+// plot lline function
+
+function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
+  var dataArray = [
+        { x: xAve, y: yMax },
+        { x: xAve, y: yMin },
+        // { x: xMax, y: yAve },
+        // { x: xMin, y: yAve },
+
+  ];
+  console.log(dataArray)
+  var xScale = d3.scaleLinear()
+  .domain([d3.min(dataArray, d => d.x), d3.max(dataArray, d => d.x)])
+  .range([0, width]);
+
+  var yScale = d3.scaleLinear()
+    .domain([d3.min(dataArray, d => d.y)-500000, d3.max(dataArray, d => d.y)])
+    .range([height, 0]);
+
+  var lineGenerator = d3.line()
+    .x(d => xScale(d.x))
+    .y(d => yScale(d.y));
+
+  console.log("Drawing commands:", lineGenerator(dataArray));
+
+  var svg = d3.select("g");
+
+  svg.append("path")
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 5)
+    .attr("d", lineGenerator(dataArray));
+}
+
+// plot lline function
+
+function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
+  var dataArray = [
+        // { x: xAve, y: yMax },
+        // { x: xAve, y: yMin },
+        { x: xMax, y: yAve },
+        { x: xMin, y: yAve },
+
+  ];
+  console.log(dataArray)
+  var xScale = d3.scaleLinear()
+  .domain([d3.min(dataArray, d => d.x)-5, d3.max(dataArray, d => d.x)])
+  .range([0, width]);
+
+  var yScale = d3.scaleLinear()
+    .domain([d3.min(dataArray, d => d.y), d3.max(dataArray, d => d.y)])
+    .range([height, 0]);
+
+  var lineGenerator = d3.line()
+    .x(d => xScale(d.x))
+    .y(d => yScale(d.y));
+
+  console.log("Drawing commands:", lineGenerator(dataArray));
+
+  var svg = d3.select("g");
+
+  svg.append("path")
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 5)
+    .attr("d", lineGenerator(dataArray));
 }
