@@ -138,7 +138,26 @@ d3.json("assets/data/year.json").then(function(raw) {
     });
     // selctedYear  is a filterd data aray 
 
-
+    // step 1.5: crosshair set up
+    // ==============================
+    var winsAveX = Math.round(d3.mean(selctedYear, d => d.wins));
+    var winsMaxX = Math.round(d3.max(selctedYear, d => d.wins))
+    var winsMinX = Math.round(d3.min(selctedYear, d => d.wins))
+    
+    
+    var cost_perAveY = Math.round(d3.mean(selctedYear, d => d.cost_per_win));
+    var cost_perMaxY= Math.round(d3.max(selctedYear, d => d.cost_per_win)) 
+    var cost_perMinY= Math.round(d3.min(selctedYear, d => d.cost_per_win)) 
+  
+    console.log(`average of  wins : ${winsAveX}`)
+    console.log(`Max of  wins : ${winsMaxX}`)
+    
+    console.log(`average of  costperwin : ${cost_perAveY}`)
+    console.log(`Max of  costperwin : ${cost_perMaxY }`)
+    console.log(`Min of  costperwin : ${cost_perMinY}`)
+    
+    //gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+    gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
 
 
 
@@ -263,3 +282,70 @@ d3.json("assets/data/year.json").then(function(raw) {
   });
 
 // END of main Graphing BLOCK
+
+
+function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
+  var dataArray = [
+        { x: xAve, y: yMax },
+        { x: xAve, y: yMin },
+        // { x: xMax, y: yAve },
+        // { x: xMin, y: yAve },
+
+  ];
+  console.log(dataArray)
+  var xScale = d3.scaleLinear()
+  .domain([d3.min(dataArray, d => d.x), d3.max(dataArray, d => d.x)])
+  .range([0, width]);
+
+  var yScale = d3.scaleLinear()
+    .domain([d3.min(dataArray, d => d.y)-500000, d3.max(dataArray, d => d.y)])
+    .range([height, 0]);
+
+  var lineGenerator = d3.line()
+    .x(d => xScale(d.x))
+    .y(d => yScale(d.y));
+
+  console.log("Drawing commands:", lineGenerator(dataArray));
+
+  var svg = d3.select("g");
+
+  svg.append("path")
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 5)
+    .attr("d", lineGenerator(dataArray));
+}
+
+// plot lline function
+
+function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
+  var dataArray = [
+        // { x: xAve, y: yMax },
+        // { x: xAve, y: yMin },
+        { x: xMax, y: yAve },
+        { x: xMin, y: yAve },
+
+  ];
+  console.log(dataArray)
+  var xScale = d3.scaleLinear()
+  .domain([d3.min(dataArray, d => d.x)-5, d3.max(dataArray, d => d.x)])
+  .range([0, width]);
+
+  var yScale = d3.scaleLinear()
+    .domain([d3.min(dataArray, d => d.y), d3.max(dataArray, d => d.y)])
+    .range([height, 0]);
+
+  var lineGenerator = d3.line()
+    .x(d => xScale(d.x))
+    .y(d => yScale(d.y));
+
+  console.log("Drawing commands:", lineGenerator(dataArray));
+
+  var svg = d3.select("g");
+
+  svg.append("path")
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("stroke-width", 5)
+    .attr("d", lineGenerator(dataArray));
+}
