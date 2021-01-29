@@ -82,7 +82,7 @@ var rawData = '';
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Import Data +++++++++++++++++++++++++++
-d3.json("assets/data/year.json").then(function(raw) { 
+d3.json("/mlb_data").then(function(raw) { 
     console.log("raw")
     console.log(raw)
 
