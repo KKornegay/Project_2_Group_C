@@ -48,7 +48,7 @@ function uniqueArray4(a) {
 };
 // cIdea is caliing in HTML code line 38
 function cIdea(yearValue){
-  console.log(`Crazy Team input from menu : ${yearValue}`);
+  console.log(`Crazy Year input from menu : ${yearValue}`);
       
       drawChart(yearValue);
       
@@ -110,10 +110,12 @@ var svg = d3.select(".chart")
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-var rawData = '';
 
+var rawData = ''; 
 
-// NEW BLOCK MAIN Graphing Block
+// End of MAIN Graphing Block
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Import Data +++++++++++++++++++++++++++
 d3.json("assets/data/year.json").then(function(raw) {
     console.log("raw")
@@ -123,20 +125,23 @@ d3.json("assets/data/year.json").then(function(raw) {
     // Identifies unique years to populate pull down menu
     var yearList = raw.map(raw => raw.year);
     yearList = uniqueArray4(yearList);
-    console.log(yearList)
+    console.log(yearList);
     
 
         // populates pull down list with team names/// IT WORKS!!!! YES!!!!!!!!!
         yearList.forEach(i =>
                 d3.select("select").append("option").text(i).property("value", i)
         );
-    
+  
         
   }).catch(function(error) {
     console.log(error);
-  });
+});
 
-// END of main Graphing BLOCK
+// END Data extraction
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
 
 // Function to draw chart
 function drawChart(yearPickedInDropDown) {
@@ -187,21 +192,17 @@ function drawChart(yearPickedInDropDown) {
   gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
   gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
 
+  //Dosn't work corectly
   buckets(cost_perMaxY, winsAveX, cost_perAveY )
 
 
 
-  //
   // Step 2: Create scale functions
   // ==============================
   var xLinearScale = d3.scaleLinear()
       // - 1 shifts scale plot axis
       .domain([d3.min(selctedYear, d => d.wins) -5, d3.max(selctedYear, d => d.wins)])
-
-    // Leave alone
-      .range([0, width]);
-
-
+      .range([0, width]);// Leave alone
 
   var yLinearScale = d3.scaleLinear()
       .domain([d3.min(selctedYear, d => d.cost_per_win) -500000, d3.max(selctedYear, d => d.cost_per_win)])
@@ -219,9 +220,11 @@ function drawChart(yearPickedInDropDown) {
   // ==============================
   chartGroup.append("g")
       .attr("transform", `translate(0, ${height})`)
+      .attr("font-size", "50px")
       .call(bottomAxis);
-
+      
   chartGroup.append("g")
+      .attr("font-size", "50px")
       .call(leftAxis);
 
   // Step 5: Create Circles
@@ -298,7 +301,7 @@ function drawChart(yearPickedInDropDown) {
     .attr("font-size", "30px")
     .style("fill", "green")
     .text("Cost per win ($)");
-
+    
   chartGroup.append("text")
     .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
     .attr("class", "axisText")
@@ -309,7 +312,7 @@ return yearPickedInDropDown
   
   
   
-}
+};
 
 
 
@@ -382,24 +385,30 @@ function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
     .attr("d", lineGenerator(dataArray));
 }
 
+
+// highlilhgt outer 90%
 function buckets (rValues, xCord, yCord ){
 
-  var svg = d3.select("body").append("svg");
-  svg.attr("width", "100px").attr("height", "100px");
+  var svg = d3.select("svg").append("path");
+  
   
   var circles = svg.selectAll("circle");
-  
+  var rV = rValues
   //var rValues = ;
+  console.log(rV , xCord, yCord)
+
+
+  circles.data(rV)
+  //.data()
+  //.enter()
+  .append("circle")
   
-  circles.data(rValues)
-    .enter()
-    .append("circle")
-    .attr("cx", xCord,)
-    .attr("cy", yCord)
-    .attr("r", function(d) {
-      return d;
-    })
-    .attr("stroke", "black")
-    .attr("stroke-width", "5")
-    .attr("fill", "red");
-  }
+
+  .attr("cx", xCord)
+  .attr("cy", yCord)
+  .attr("r", rV)
+  .attr("fill", "black")
+  //.attr("text", d => d.team) probaly not needed
+  .attr("opacity", ".5");
+}
+

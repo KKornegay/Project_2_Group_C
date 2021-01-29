@@ -4,19 +4,17 @@ console.log("Annual Cost/Win");
 // Block Funcitons
 //BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 // identifies unieque elements in an array or removes duplicates
-
-
-
 function uniqueArray4(a) {
   return [...new Set(a)];
 };
 
 
 
-
+// cIdea is caliing in HTML code line 38
 function cIdea(teamValue){
-  console.log(`Crazy Team input from menu : ${teamValue}`);
-  var inputTeam = teamValue;
+    console.log(`Crazy Team input from menu : ${teamValue}`);
+    
+    drawChart(teamValue);
   
   //console.log(inputYear)
   //return inputTeam
@@ -52,7 +50,7 @@ const formatterTWO = new Intl.NumberFormat('en-US', {
 var dropdown = d3.select("#selDataset");
   //console.log(`dropdown value: ${dropdown}`);
 
-  var sample945 = 2018
+
 //BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 // BLOCK Graph paramter set up
 //*****************************************************
@@ -79,67 +77,62 @@ var svg = d3.select(".chart")
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-var selectID = "";
-// NEW BLOCK MAIN Graphing Block
+var rawData = ''; 
+// End of MAIN Graphing Block
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Import Data +++++++++++++++++++++++++++
 d3.json("assets/data/year.json").then(function(raw) { 
     console.log("raw")
     console.log(raw)
 
+    rawData = raw;
     // Identifies unique years to populate pull down menu
-    var TeamList = raw.map(raw => raw.team);
-    TeamList = uniqueArray4(TeamList); 
-    console.log(TeamList)
+    var teamList = raw.map(raw => raw.team);
+    teamList = uniqueArray4(teamList); 
+    console.log(teamList);
 
-        
-      // populates pull down list with team names/// IT WORKS!!!! YES!!!!!!!!!
-      TeamList.forEach(i => 
-        d3.select("select").append("option").text(i).property("value", i)
-        );
+
+            // populates pull down list with team names/// IT WORKS!!!! YES!!!!!!!!!
+            teamList.forEach(i =>
+                    d3.select("select").append("option").text(i).property("value", i)
+            );
       
-      // extracts selected value from user input and assigns varialble--- works
-      var selectID = dropdown.property("value");
-      // sends value to cIdea
-      dropdown.on("change", cIdea(selectID));
-      
-      var selctedYear = raw.filter(raw => raw.team == selectID);
-        console.log(selctedYear)
-    
-     // create date parser
-      var dateParser = d3.timeParse("%y");
-    
-      console.log(selectID)
+
+  }).catch(function(error) {
+    console.log(error);
+});
+// // END Data extraction
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+// // Function to draw chart
+function drawChart(teamPickedInDropDown) {
+    console.log(`team picked in Drop down: ${teamPickedInDropDown}`)
+      // creates the aray for plotting
+    var selctedYear = rawData.filter(rawData => rawData.team == teamPickedInDropDown);
+    //console.log(`selctedYear: ${selctedYear}`)
+ 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
     selctedYear.forEach(function(data) {
-        
-        // x axis
-        wins = +data.wins;
-        year = +data.year;
-        //var year = (year *1000)
-        //obesityLow = +data.obesityLow 
-        //obesityHigh = +data.obesityHigh
-        // smokes = +data.smokes
-        // smokesLow = +data.smokesLow
-        // smokesHigh = +data.smokesHigh
-        //y axis
-        cost_per_win = +data.cost_per_win
-        team_salary = +data.team_salary;
-        avg_player_salary = +data.avg_player_salary
-        median_player_salary= +data.median_player_salary
-        // age= +data.age
-        //year = parse(data.year)
-       
-        // console.log("data1");
-        // console.log(wins);
-        
-        // needed for bubble label
-        //console.log(data.abbr)
-    });
-    // selctedYear  is a filterd data aray 
 
-    // step 1.5: crosshair set up
-    // ==============================
+      // x axis
+      wins = +data.wins;
+      year = data.year;
+
+      //y axis
+      cost_per_win = +data.cost_per_win
+      team_salary = +data.team_salary;
+      avg_player_salary = +data.avg_player_salary
+      median_player_salary= +data.median_player_salary
+      //console.log(`list wins : ${year}`)
+  
+  
+    });
+
+  // step 1.5 Calulate averages for x any y plots
+    //=======================================================
     var winsAveX = Math.round(d3.mean(selctedYear, d => d.wins));
     var winsMaxX = Math.round(d3.max(selctedYear, d => d.wins))
     var winsMinX = Math.round(d3.min(selctedYear, d => d.wins))
@@ -156,9 +149,13 @@ d3.json("assets/data/year.json").then(function(raw) {
     console.log(`Max of  costperwin : ${cost_perMaxY }`)
     console.log(`Min of  costperwin : ${cost_perMinY}`)
     
+
+    // Coded out to remvoe average year line. not needed for the presentation
     //gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
     gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
 
+    //Dosnt work corectly
+    //buckets(cost_perMaxY, winsAveX, cost_perAveY )
 
 
     // Step 2: Create scale functions
@@ -166,13 +163,8 @@ d3.json("assets/data/year.json").then(function(raw) {
     var xLinearScale = d3.scaleLinear()
       // - 1 shifts scale plot axis
       .domain([d3.min(selctedYear, d => d.year) -5, d3.max(selctedYear, d => d.year)])
-    
-    // Leave alone
-      .range([0, width]);
+      .range([0, width]);  // Leave alone
       
-
-        
-
 
     var yLinearScale = d3.scaleLinear()
       .domain([d3.min(selctedYear, d => d.cost_per_win) -500000, d3.max(selctedYear, d => d.cost_per_win)])
@@ -180,57 +172,56 @@ d3.json("assets/data/year.json").then(function(raw) {
 
 
 
+
     // Step 3: Create axis functions
-    // ==============================
+      // ==============================
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
+
 
 
     // Step 4: Append Axes to the chart
     // ==============================
     chartGroup.append("g")
-      .attr("transform", `translate(0, ${height})`)
-      .call(bottomAxis);
-      
+        .attr("transform", `translate(0, ${height})`)
+        .attr("font-size", "50px")
+        .call(bottomAxis);
+        
     chartGroup.append("g")
-      .call(leftAxis);
-      
+        .attr("font-size", "50px")
+        .call(leftAxis);
 
-    // Step 5: Create Circles
+      // Step 5: Create Circles
     //* ==============================
-    
+
     var circlesGroup = chartGroup.selectAll("circle")
-    .data(selctedYear)
-    .enter()
-    .append("circle")
-    .attr("cx", d => xLinearScale(d.year))
-    .attr("cy", d => yLinearScale(d.cost_per_win))
-    .attr("r", "20")
-    .attr("fill", d=> winColor(d.championship))
-    //.attr("text", d => d.team) probaly not needed
-    .attr("opacity", ".5");
-    
+        .data(selctedYear)
+        .enter()
+        .append("circle")
+        .attr("cx", d => xLinearScale(d.year))
+        .attr("cy", d => yLinearScale(d.cost_per_win))
+        .attr("r", "20")
+        .attr("fill", d=> winColor(d.championship))
+        //.attr("text", d => d.team) probaly not needed
+        .attr("opacity", ".5");
+
+    // New effort to label bubbles with state abreviation 
+    var statename = chartGroup.append("g")
+    var statetext = statename.selectAll("text")
+        .data(selctedYear)
+        .enter()
+        .append("text")
+        .text(d=>d.wins) // labels state abreviation
+        .attr("x", d=> xLinearScale(d.year))
+        .attr("y", d=> yLinearScale(d.cost_per_win))
+        .attr("font-size", "18px")
+        .style("fill", "white")
+        .attr("text-anchor", "middle");
     
 
-    // New effort to label bubbles with state abreviation (effort 1/12/2011 #1)
-
-      var statename = chartGroup.append("g")
-      var statetext = statename.selectAll("text")
-          .data(selctedYear)
-          .enter()
-          .append("text")
-          .text(d=>d.wins) // labels state abreviation
-          .attr("x", d=> xLinearScale(d.year))
-          .attr("y", d=> yLinearScale(d.cost_per_win))
-          .attr("font-size", "18px")
-          .style("fill", "white")
-          .attr("text-anchor", "middle");
-    
-
-    
     // Step 6: Initialize tool tip
-    // ==============================
-    var toolTip = d3.tip()
+      // ==============================
+      var toolTip = d3.tip()
       .attr("class", "tooltip")
       .offset([80, -80])
       .html(function(d) {
@@ -242,48 +233,43 @@ d3.json("assets/data/year.json").then(function(raw) {
         <br>Year: ${d.year}`);
       });
 
-    // // Step 7: Create tooltip in the chart
-    // // ==============================
-     circlesGroup.call(toolTip);
 
-    // Step 8: Create event listeners to display and hide the tooltip
-    // ==============================
-    circlesGroup.on("click", function(data) {
-      toolTip.show(data, this);
-    })
+      // // Step 7: Create tooltip in the chart
+      // // ==============================
+      circlesGroup.call(toolTip);    
+
+
+      // Step 8: Create event listeners to display and hide the tooltip
+        // ==============================
+        circlesGroup.on("click", function(data) {
+            toolTip.show(data, this);
+      })
       // onmouseout event
       .on("mouseout", function(data, index) {
-        toolTip.hide(data);
+            toolTip.hide(data);
       });
 
+      // Create axes labels
+      chartGroup.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left)
+          .attr("x", 0 - (height / 2))
+          .attr("dy", "1em")
+          .attr("class", "axisText")
+          .attr("font-size", "30px")
+          .style("fill", "green")
+          .text("Cost per win ($)");
 
+      chartGroup.append("text")
+          .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+          .attr("class", "axisText")
+          .attr("font-size", "30px")
+          .style("fill", "green")
+          .text("Wins");
+return teamPickedInDropDown
+};
 
-   
-    // Create axes labels
-    chartGroup.append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left)
-      .attr("x", 0 - (height / 2))
-      .attr("dy", "1em")
-      .attr("class", "axisText")
-      .attr("font-size", "30px")
-      .style("fill", "green")
-      .text("Cost per win ($)");
-
-    chartGroup.append("text")
-      .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-      .attr("class", "axisText")
-      .attr("font-size", "30px")
-      .style("fill", "green")
-      .text("Year");
-      
-  }).catch(function(error) {
-    console.log(error);
-  });
-
-// END of main Graphing BLOCK
-
-
+// plot cross hair functions
 function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
   var dataArray = [
         { x: xAve, y: yMax },

@@ -12,10 +12,9 @@ body {
 }
 h2{
   color: yellow;
-
 }
 p{
-  font-size: 60;
+  font-size:60;
 }
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
 .wrapper {
