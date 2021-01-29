@@ -120,13 +120,15 @@ function drawChart(teamPickedInDropDown) {
       // x axis
       wins = +data.wins;
       year = data.year;
-
+      //year = d3.year.format("%Y").parse;
       //y axis
       cost_per_win = +data.cost_per_win
       team_salary = +data.team_salary;
       avg_player_salary = +data.avg_player_salary
       median_player_salary= +data.median_player_salary
-      //console.log(`list wins : ${year}`)
+      
+      
+      console.log(`list year : ${year}`)
   
   
     });
