@@ -38,6 +38,10 @@ def viz1():
 def viz2():
     return render_template('Yearapp.html')
 
+@app.route('/mlb')
+def viz3():
+    return render_template('mlb.html')
+
 @app.route('/final_thoughts')
 def endpoint():
     return render_template('end.html')
