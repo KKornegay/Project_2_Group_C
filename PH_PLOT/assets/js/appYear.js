@@ -52,6 +52,7 @@ function cIdea(yearValue){
       
       drawChart(yearValue);
       
+      
 };
 
 //  Changes data plot for championship wins to green
@@ -308,8 +309,10 @@ function drawChart(yearPickedInDropDown) {
     .attr("font-size", "30px")
     .style("fill", "green")
     .text("Wins");
+
+ 
 return yearPickedInDropDown
-  
+
   
   
 };
@@ -412,3 +415,4 @@ function buckets (rValues, xCord, yCord ){
   .attr("opacity", ".5");
 }
 
+cIdea() 

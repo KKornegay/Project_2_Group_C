@@ -135,9 +135,9 @@ function drawChart(teamPickedInDropDown) {
 
   // step 1.5 Calulate averages for x any y plots
     //=======================================================
-    var winsAveX = Math.round(d3.mean(selctedYear, d => d.wins));
-    var winsMaxX = Math.round(d3.max(selctedYear, d => d.wins))
-    var winsMinX = Math.round(d3.min(selctedYear, d => d.wins))
+    var winsAveX = Math.round(d3.mean(selctedYear, d => d.year));
+    var winsMaxX = Math.round(d3.max(selctedYear, d => d.year))
+    var winsMinX = Math.round(d3.min(selctedYear, d => d.year))
     
     
     var cost_perAveY = Math.round(d3.mean(selctedYear, d => d.cost_per_win));
@@ -151,7 +151,7 @@ function drawChart(teamPickedInDropDown) {
     console.log(`Max of  costperwin : ${cost_perMaxY }`)
     console.log(`Min of  costperwin : ${cost_perMinY}`)
     
-
+  
     // Coded out to remvoe average year line. not needed for the presentation
     //gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
     gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
@@ -267,7 +267,13 @@ function drawChart(teamPickedInDropDown) {
           .attr("class", "axisText")
           .attr("font-size", "30px")
           .style("fill", "green")
-          .text("Wins");
+          .text("Year");
+
+      svg.append("path")
+      .attr("fill", "none")
+      .attr("stroke", "red")
+      .attr("stroke-width", 5)
+      .attr("d", lineGenerator(dataArray));
 return teamPickedInDropDown
 };
 
