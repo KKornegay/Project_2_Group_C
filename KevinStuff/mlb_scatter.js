@@ -12,11 +12,10 @@ var svg = d3.select("#scatter")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-//**************************************************************
 
-// import csv data set 
+// call to json 
 
-d3.csv("mlb_data.csv").then(function(data) {
+d3.json("year.json").then(function(data) {
   data.forEach(d => {
     d.wins = +d.wins;
     d.cost_per_win = +d.cost_per_win;
@@ -82,14 +81,6 @@ gdots.append("circle")
   }
   return "lightblue";
 });
-// .classed("oak", d => {
-//   if (d.team === "OAK") {
-//     return true;
-//   }
-//   return false;
-// });
-
-// add text to gdots
 gdots.append("text")
   .text(d => d.team)
   .attr("x", d => x(d.wins))
@@ -98,29 +89,22 @@ gdots.append("text")
   .attr("dy", 2)
   .style("font-size", "7px")
   .style(font-weight, "bold");
-// %%%%%%%%
-
-//  gdots.append("circle")
-// .attr("cx", d => x(d.wins))
-// .attr("cy", d => y(d.cost_per_win))
-// .attr("r", 10)
-// .style("fill", "#fe2e64");
-
-// // add text to gdots
-// gdots.append("text")
-//   .text(d => d.team)
-//   .attr("x", d => x(d.wins))
-//   .attr("y", d => y(d.cost_per_win))
-//   .attr("dx", -5)
-//   .attr("dy", 2)
-//   .style("font-size", "7px")
-//   .style(font-weight, "bold");
-// };
-
-//Catch error
 }).catch(e => {
   console.log(e);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
