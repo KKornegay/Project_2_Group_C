@@ -109,6 +109,7 @@ d3.json("/mlb_data").then(function(raw) {
 // // Function to draw chart
 function drawChart(teamPickedInDropDown) {
     console.log(`team picked in Drop down: ${teamPickedInDropDown}`)
+    
       // creates the aray for plotting
     var selctedYear = rawData.filter(rawData => rawData.team == teamPickedInDropDown);
     //console.log(`selctedYear: ${selctedYear}`)
@@ -269,7 +270,7 @@ function drawChart(teamPickedInDropDown) {
           .style("fill", "green")
           .text("Year");
 
-      svg.append("path")
+      chartGroup.append("path")
       .attr("fill", "none")
       .attr("stroke", "red")
       .attr("stroke-width", 5)
@@ -301,9 +302,9 @@ function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
 
   console.log("Drawing commands:", lineGenerator(dataArray));
 
-  var svg = d3.select("g");
+  var svgGroup = d3.select("g");
 
-  svg.append("path")
+  svgGroup.append("path")
     .attr("fill", "none")
     .attr("stroke", "red")
     .attr("stroke-width", 5)
@@ -335,9 +336,9 @@ function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
 
   console.log("Drawing commands:", lineGenerator(dataArray));
 
-  var svg = d3.select("g");
+  var svgGroup = d3.select("g");
 
-  svg.append("path")
+  svgGroup.append("path")
     .attr("fill", "none")
     .attr("stroke", "red")
     .attr("stroke-width", 5)
