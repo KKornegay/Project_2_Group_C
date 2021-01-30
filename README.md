@@ -15,7 +15,7 @@ Under some of the tightest spending constraints, Oakland was struggling to compe
 his lieutenants eschewed longheld baseball wisdom that emphasized players who hit for high average, knocked in a lot of runs (RBI) and stole a lot of bases. 
 Players who compiled these types of stats, commanded large salaries. 
 
-Instead Oakland utilized an emerging set of analytics called sabermetrics which placed importance stats like on base percentage and slugging percentage. 
+Instead Oakland utilized an emerging set of analytics called sabermetrics which placed importance on stats like on base percentage and slugging percentage. 
 As these stats weren't traditionally regarded as important, players who excelled in these areas generally commanded lower salaries.
 
 As a result of this revolutionary approach, which became known as "Moneyball, Oakland has consistently competed with teams that spend as much as six times
