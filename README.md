@@ -67,15 +67,11 @@ Additionally, users can use our database to explore their favorite team's spendi
       
    USA TODAY's baseball salaries database contains year-by-year listings of salaries for Major League Baseball players on opening day rosters and disabled lists, 1988 	through the current season. Figures, compiled by USA TODAY, are based on documents obtained from the MLB Players Association, club officials and filed with Major League Baseball's central office. Deferred payments and incentive clauses are not included. Team payrolls do not include money paid or received in trades or for players who have been released. Average and median salaries reported by USA TODAY may differ from numbers that are reported elsewhere.
       
+   
    3. [Baseball Reference: Major League Baseball Team Win Totals](https://www.baseball-reference.com/leagues/MLB/index.shtml)
-   USA TODAY's baseball salaries database contains year-by-year listings of salaries for Major League Baseball players on opening day rosters and disabled lists, 1988 	through the current
+  Baseball Reference is widely conidered the authoritative source for professional baseball statistics and data from more than 120 years of baseball history. We utilized BBREF's
+yearly baseball win totals collection to assemble our win data.
    
-   
-
-
-
-
-
 
 ### Charts: 
 -	Interactive bubble chart contrasting average team cost per win/per season by year.
@@ -85,9 +81,16 @@ Additionally, users can use our database to explore their favorite team's spendi
 
 ![bubleChartExample.png](images/bubleChartExample.png)
 	
-### Questions to be answered:
-1.	What was the average cost per team win based on total salaries each season?
-2.	How often did yearly champions spend above or below the league mean per win?
+### Analysis:
+
+#### Wins
+Over the 20-year period we examined, the Athletics won 1,729 regular season games – an average of 86.5 per season. The average MLB team over those two decades registered just 82 wins.
+
+#### Cost per Win
+The Athletics’ cost per win (total team salary expenditures/team wins) came out to $686,427. At first glance one would say wins are expensive. Consider though that average cost per win leaguewide during this period was $1,122,739. In short, the Athletics spent 31 percent less to win about 4.5 more games per season as compared to the rest of the league.
+When considering the disadvantages the Athletics franchise faces, objectively, it’s not unreasonable to conclude that the Moneyball approach has been a success over its two decades of implementation.
+
+										###
 
 
 
