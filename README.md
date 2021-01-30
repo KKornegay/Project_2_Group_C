@@ -74,10 +74,8 @@ yearly baseball win totals collection to assemble our win data.
    
 
 ### Charts: 
--	Interactive bubble chart contrasting average team cost per win/per season by year.
--	Interactive bubble chart contrasting average team cost per win/per season by team.
--	Bubble chart representing all 30 champions (from 1985-2015). 
--	Size of bubbles will be representative of championship cost/ team win in relation to league mean of cost/team win.
+-	Interactive charts providing opportunity to analyze individual team's cost-per-win.
+-	Scatterplot representing cost per win for all 30 teams annually from 2000-2019. 
 
 ![bubleChartExample.png](images/bubleChartExample.png)
 	
