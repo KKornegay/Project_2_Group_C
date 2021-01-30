@@ -219,8 +219,8 @@ function drawChart(yearPickedInDropDown) {
               console.log(`Max of  costperwin : ${cost_perMaxY }`)
               console.log(`Min of  costperwin : ${cost_perMinY}`)
               
-              gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
-              gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+              // gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+              // gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
 
 
       return yearPickedInDropDown

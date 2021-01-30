@@ -154,7 +154,7 @@ function drawChart(teamPickedInDropDown) {
   
     // Coded out to remvoe average year line. not needed for the presentation
     //gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
-    gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+    // gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
 
     //Dosnt work corectly
     //buckets(cost_perMaxY, winsAveX, cost_perAveY )
