@@ -114,6 +114,7 @@ function drawChart(yearPickedInDropDown) {
 
       // Step 4: Append Axes to the chart
       // ==============================
+      chartGroup.html("")
       chartGroup.append("g")
           .classed("x-axis", true)
           .attr("transform", `translate(0, ${height})`)
