@@ -350,8 +350,8 @@ function init(){
       );
     
       // Use the first sample from the list to build the initial plots
-       var firstSample = 2019;
-       drawChart(firstSample);
+      //  var firstSample = 2019;
+      //  drawChart(firstSample);
 
   });
 
