@@ -96,7 +96,7 @@ function drawChart(teamPickedInDropDown) {
 
       
 
-      //Dosnt work corectly
+      
       //buckets(cost_perMaxY, winsAveX, cost_perAveY )
 
 
@@ -337,8 +337,8 @@ function init(){
         );
           
       // Use the first sample from the list to build the initial plots
-      //  var firstSample = "ARI";
-      //  drawChart(firstSample);
+       var firstSample = "ARI";
+       drawChart(firstSample);
 
 
     });
