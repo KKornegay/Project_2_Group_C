@@ -285,7 +285,7 @@ function gridPlotY(xMax, xMin, yAve, yMax, yMin){
   var dataArray = [
         // { x: xAve, y: yMax },
         // { x: xAve, y: yMin },
-        { x: xMax, y: (yAve) },
+        { x: xMax, y: yAve },
         { x: xMin, y: yAve },
 
   ];
