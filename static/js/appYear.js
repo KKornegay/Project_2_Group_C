@@ -123,6 +123,8 @@ function drawChart(yearPickedInDropDown) {
       chartGroup.append("g")
           .call(leftAxis);
 
+      crossHairDataPrep(selctedYear)                                // places crosshairs behind bubbles
+
       // Step 5: Create Circles
       //* ==============================
       var statename = chartGroup.append("g")
@@ -202,7 +204,7 @@ function drawChart(yearPickedInDropDown) {
       
   
 
-      crossHairDataPrep(selctedYear)
+      
 
       return yearPickedInDropDown
       

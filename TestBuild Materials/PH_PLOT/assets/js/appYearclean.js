@@ -72,7 +72,7 @@ function drawChart(yearPickedInDropDown) {
   d3.json("assets/data/year.json").then(function(rawData){
  
       console.log(rawData)
-
+      
       // creates the aray for plotting
       var selctedYear = rawData.filter(rawData => rawData.year == yearPickedInDropDown);  
       // Step 1: Parse Data/Cast as numbers
@@ -111,7 +111,7 @@ function drawChart(yearPickedInDropDown) {
       var bottomAxis = d3.axisBottom(xLinearScale);
       var leftAxis = d3.axisLeft(yLinearScale);
 
-
+      
       // Step 4: Append Axes to the chart
       // ==============================
       chartGroup.html("")                                             //cleans up previous code
@@ -122,7 +122,7 @@ function drawChart(yearPickedInDropDown) {
           
       chartGroup.append("g")
           .call(leftAxis);
-
+      crossHairDataPrep(selctedYear)
       // Step 5: Create Circles
       //* ==============================
       var statename = chartGroup.append("g")
@@ -136,7 +136,7 @@ function drawChart(yearPickedInDropDown) {
           .attr("fill", d=> winColor(d.championship))
           .attr("opacity", ".5");
 
-
+      
       // New effort to label bubbles with state abreviation 
 
       var statename = chartGroup.append("g")
@@ -202,7 +202,7 @@ function drawChart(yearPickedInDropDown) {
       
   
 
-      crossHairDataPrep(selctedYear)
+      
 
       return yearPickedInDropDown
       
