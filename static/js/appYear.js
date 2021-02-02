@@ -65,7 +65,7 @@ function winColor(winDataColor){
   return colorWin;
   };
 
-
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 // Function to draw chart
 function drawChart(yearPickedInDropDown) {
@@ -114,7 +114,7 @@ function drawChart(yearPickedInDropDown) {
 
       // Step 4: Append Axes to the chart
       // ==============================
-      chartGroup.html("")
+      chartGroup.html("")                                             //cleans up previous code
       chartGroup.append("g")
           .classed("x-axis", true)
           .attr("transform", `translate(0, ${height})`)
@@ -200,9 +200,18 @@ function drawChart(yearPickedInDropDown) {
         .text("Wins");
 
       
-      
+  
 
-            // step 8.5 Calulate averages for x any y plots --- next function down
+      crossHairDataPrep(selctedYear)
+
+      return yearPickedInDropDown
+      
+  })
+};
+
+// Parses data for ploting cross hair grid
+function crossHairDataPrep(selctedYear){
+                // step 8.5 Calulate averages for x any y plots --- next function down
               //=======================================================
               var winsAveX = Math.round(d3.mean(selctedYear, d => d.wins));
               var winsMaxX = Math.round(d3.max(selctedYear, d => d.wins))
@@ -220,21 +229,16 @@ function drawChart(yearPickedInDropDown) {
               console.log(`Max of  costperwin : ${cost_perMaxY }`)
               console.log(`Min of  costperwin : ${cost_perMinY}`)
               
-              // gridPlotX(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
-              // gridPlotY(winsAveX, winsMaxX, winsMinX, cost_perAveY, cost_perMaxY, cost_perMinY)
+              gridPlotX(winsAveX, cost_perMaxY, cost_perMinY)
+              gridPlotY(winsMaxX, winsMinX, cost_perAveY)
 
-
-      return yearPickedInDropDown
-    })
-  };
-
-
+};
 
 
 
 // plot cross hair functions
 // vertical line
-function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
+function gridPlotX(xAve, yMax, yMin){
   var dataArray = [
         { x: xAve, y: yMax },
         { x: xAve, y: yMin },
@@ -268,7 +272,7 @@ function gridPlotX(xAve, xMax, xMin, yAve, yMax, yMin){
 
 // plot line function for horizontal
 
-function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
+function gridPlotY(xMax, xMin, yAve){
   var dataArray = [
         // { x: xAve, y: yMax },
         // { x: xAve, y: yMin },
@@ -277,9 +281,10 @@ function gridPlotY(xAve, xMax, xMin, yAve, yMax, yMin){
 
   ];
   console.log(dataArray)
+  
   var xScale = d3.scaleLinear()
-  .domain([d3.min(dataArray, d => d.x)-5, d3.max(dataArray, d => d.x)])
-  .range([0, width]);
+    .domain([d3.min(dataArray, d => d.x)-5, d3.max(dataArray, d => d.x)])
+    .range([0, width]);
 
   var yScale = d3.scaleLinear()
     .domain([d3.min(dataArray, d => d.y), d3.max(dataArray, d => d.y)])
@@ -322,10 +327,10 @@ function buckets (rValues, xCord, yCord ){
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-// Import Data +++++++++++++++++++++++++++                                  for pull down list
+// Import Data +++++++++++++++++++++++++++                                  For Pull down list
 function init(){
   
-  d3.json("mlb_data").then(function(raw) {
+  d3.json("/mlb_data").then(function(raw) {
       console.log("raw")
       console.log(raw)
 
@@ -345,10 +350,11 @@ function init(){
       );
     
       // Use the first sample from the list to build the initial plots
-       //var firstSample = 2019;
+       var firstSample = 2019;
        drawChart(firstSample);
-       
+
   });
+
 
 };
 // END Data extraction for populating pull down menu
@@ -359,11 +365,11 @@ function init(){
 // connects html input data with javascript
 
 function optionChanged(yearValue){
-  console.log(`Year input from menu : ${yearValue}`);
-    
-    drawChart(yearValue);
       
-      
+
+      console.log(`Year input from menu : ${yearValue}`);
+      drawChart(yearValue);
+
 };
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
