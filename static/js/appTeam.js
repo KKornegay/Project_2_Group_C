@@ -96,7 +96,7 @@ function drawChart(teamPickedInDropDown) {
 
       
 
-      
+      //Dosnt work corectly
       //buckets(cost_perMaxY, winsAveX, cost_perAveY )
 
 
